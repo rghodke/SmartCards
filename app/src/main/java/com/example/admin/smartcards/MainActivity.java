@@ -1,5 +1,6 @@
 package com.example.admin.smartcards;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -28,6 +29,8 @@ public class MainActivity extends ActionBarActivity {
                 password.getText().toString().equals("admin")) {
             Toast.makeText(getApplicationContext(), "Redirecting...",
                     Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, DeckList.class);
+            startActivity(intent);
         }
         else{
             Toast.makeText(getApplicationContext(), "...",

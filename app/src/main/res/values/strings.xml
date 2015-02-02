@@ -4,6 +4,9 @@
     <string name="app_name">SmartCards</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
     <color name="white">#FFFFFF</color>
+
+    <string name="title_activity_deck_list">DeckList</string>
 
 </resources>
