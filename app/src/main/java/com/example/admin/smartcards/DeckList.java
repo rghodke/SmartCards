@@ -1,6 +1,7 @@
 package com.example.admin.smartcards;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -72,8 +73,11 @@ public class DeckList extends Activity {
     }
 
 
-
-
+    public void CreateDeck (View view)
+    {
+        Intent intent = new Intent(DeckList.this, CreateCard.class);
+        startActivity(intent);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

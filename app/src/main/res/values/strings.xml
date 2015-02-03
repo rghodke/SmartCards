@@ -8,5 +8,6 @@
     <color name="white">#FFFFFF</color>
 
     <string name="title_activity_deck_list">DeckList</string>
+    <string name="title_activity_create_card">CreateCard</string>
 
 </resources>
