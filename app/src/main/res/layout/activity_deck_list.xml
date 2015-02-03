@@ -47,7 +47,18 @@
         android:id="@+id/CreateDeckButton"
         android:layout_below="@+id/shareButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="32dp"
         android:src="@drawable/createdecksymbol"
         android:background="@color/white" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:choiceMode = "singleChoice"
+        android:listSelector="@android:color/darker_gray"
+        android:id="@+id/deckList"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/CreateDeckButton"
+        android:layout_marginTop="20dp"
+        />
 </RelativeLayout>
