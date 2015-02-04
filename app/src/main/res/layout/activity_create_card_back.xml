@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.admin.smartcards.CreateCard"
+    tools:context="com.example.admin.smartcards.CreateCardBack"
     android:background="#ffffffff">
 
     <LinearLayout android:layout_width="fill_parent"
@@ -27,38 +27,26 @@
 
     </LinearLayout>
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/EnterTitle"
+        android:id="@+id/ViewTitle"
         android:layout_below="@+id/linearLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:text="Enter Title"
+        android:text="Class Goes Here"
         android:textSize="25dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/EnterCourse"
-        android:text="Enter Course"
-        android:textSize="25dp"
-        android:layout_below="@+id/EnterTitle"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="250dp"
         android:id="@+id/CardFront"
-        android:layout_below="@+id/EnterCourse"
+        android:layout_below="@+id/ViewTitle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="45dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:ellipsize="start"
@@ -94,8 +82,7 @@
             android:layout_gravity="bottom"
             android:textSize="50dp"
             android:gravity="bottom|right"
-            android:background="@color/white"
-            android:onClick="createBack"/>
+            android:background="@color/white" />
     </LinearLayout>
 
 </RelativeLayout>

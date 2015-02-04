@@ -26,11 +26,16 @@
         <activity
             android:name=".CreateCard"
             android:label="@string/title_activity_create_card"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
-            android:parentActivityName=".DeckList" >
+            android:parentActivityName=".DeckList"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.admin.smartcards.DeckList" />
+        </activity>
+        <activity
+            android:name=".CreateCardBack"
+            android:label="@string/title_activity_create_card_back"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
         </activity>
     </application>
 

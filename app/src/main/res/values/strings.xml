@@ -9,5 +9,6 @@
 
     <string name="title_activity_deck_list">DeckList</string>
     <string name="title_activity_create_card">CreateCard</string>
+    <string name="title_activity_create_card_back">CreateCardBack</string>
 
 </resources>
