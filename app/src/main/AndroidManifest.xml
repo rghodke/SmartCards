@@ -35,7 +35,12 @@
         <activity
             android:name=".CreateCardBack"
             android:label="@string/title_activity_create_card_back"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name=".DeckOpen"
+            android:label="@string/title_activity_deck_open"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
         </activity>
     </application>
 

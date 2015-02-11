@@ -1,16 +1,15 @@
 package com.example.admin.smartcards;
 
 import android.app.Activity;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -23,6 +22,43 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SQLiteDatabase db = openOrCreateDatabase("smartCards", Context.MODE_PRIVATE, null);
+
+        db.execSQL("DROP TABLE cards");
+        db.execSQL("DROP TABLE myDecks");
+
+        db.execSQL("CREATE TABLE IF NOT EXISTS myDecks (deckID INTEGER PRIMARY KEY, name VARCHAR(255))");
+
+        db.execSQL("CREATE TABLE IF NOT EXISTS cards (cardID INTEGER PRIMARY KEY, deckID INTEGER, frontStr VARCHAR(255), backStr VARCHAR(255), FOREIGN KEY (deckID) REFERENCES myDecks(deckID))");
+
+
+
+        ContentValues values = new ContentValues();
+        values.put("Name", "Test Deck");
+        db.insert("myDecks", null, values);
+
+        values.clear();
+
+        values.put("Name", "CSE 100");
+        db.insert("myDecks", null, values);
+
+        values.clear();
+
+        values.put("deckID", 1);
+        values.put("frontStr", "Test");
+        values.put("backStr", "Test string");
+        db.insert("cards", null, values);
+
+        values.clear();
+
+        values.put("deckID", 2);
+        values.put("frontStr", "Data Structures");
+        values.put("backStr", "Insert definition here");
+        db.insert("cards", null, values);
+
+        values.clear();
+        db.close();
     }
 
 
