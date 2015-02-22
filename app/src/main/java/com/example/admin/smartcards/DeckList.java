@@ -1,18 +1,17 @@
 package com.example.admin.smartcards;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.SimpleCursorAdapter;
+
+import com.example.admin.daos.DeckDBAdapter;
 
 
 public class DeckList extends Activity {
@@ -23,13 +22,31 @@ public class DeckList extends Activity {
         setContentView(R.layout.activity_deck_list);
 
         int deckCount = 1;
-        SQLiteDatabase db = openOrCreateDatabase("smartCards", Context.MODE_PRIVATE, null);
-        Cursor cursor = db.query("myDecks", null, null, null, null, null, null);
+       // SQLiteDatabase db = openOrCreateDatabase("smartCards", Context.MODE_PRIVATE, null);
+        //Cursor cursor = db.query("myDecks", null, null, null, null, null, null);
         //Cursor cursor = db.rawQuery("SELECT deckID, name FROM myDecks", null);
 
-        String[] values;
+        DeckDBAdapter dbHelper = new DeckDBAdapter(this);
+        SimpleCursorAdapter dataAdapter;
 
-        if (cursor.moveToFirst())
+        dbHelper.open();
+
+        Cursor cursor = dbHelper.fetchAllDecks();
+
+
+        String[] columns = new String[] {
+                DeckDBAdapter.KEY_ROWID,
+                DeckDBAdapter.KEY_NAME
+        };
+
+        int[] to = new int[] {
+                R.id.deckID,
+                R.id.deckName
+        };
+
+        dataAdapter = new SimpleCursorAdapter(this, R.layout.deck_info, cursor, columns, to, 0);
+
+        /*if (cursor.moveToFirst())
         {
             deckCount = cursor.getCount();
             values = new String[deckCount];
@@ -54,7 +71,7 @@ public class DeckList extends Activity {
                     "Android Example List View",
                     "Test"
             };
-        }
+        }*/
 
 
         // Get ListView object from xml
@@ -77,27 +94,36 @@ public class DeckList extends Activity {
         // Third parameter - ID of the TextView to which the data is written
         // Forth - the Array of data
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.custom_textview, android.R.id.text1, values);
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+           //     R.layout.custom_textview, android.R.id.text1, values);
 
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.custom_textview, values);
 
 
 
         // Assign adapter to ListView
-        decklist.setAdapter(adapter);
+        decklist.setAdapter(dataAdapter);
 
         decklist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+
+                Cursor cursor = (Cursor) parent.getItemAtPosition(position);
+
+                String deckID = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
+                String deckName = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                //long testID = cursor.getColumnIndexOrThrow("_id");
+
                 Intent intent = new Intent(DeckList.this, DeckOpen.class);
+                intent.putExtra("deckID", deckID);
+                intent.putExtra("deckName", deckName);
                 startActivity(intent);
                 //String textstuff = (TextView) view.findViewById(android.R.id.text1)).getText().toString();
 
-                //Toast.makeText(getApplicationContext(),
-                //        decklist.getItemAtPosition(position).toString(), Toast.LENGTH_LONG)
-                //        .show();
+//                Toast.makeText(getApplicationContext(),
+  //                      deckID, Toast.LENGTH_LONG)
+    //                   .show();
 
             }
         }

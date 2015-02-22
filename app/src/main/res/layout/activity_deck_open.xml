@@ -10,10 +10,10 @@
     <Button
         android:layout_width="150dp"
         android:layout_height="75dp"
-        android:text="&lt;"
-        android:id="@+id/previous"
+        android:text="Study by Back"
+        android:id="@+id/StudyBack"
         android:layout_gravity="bottom|left"
-        android:textSize="50dp"
+        android:textSize="23dp"
         android:gravity="bottom|left"
         android:background="@color/white"
         android:layout_alignParentBottom="true"
@@ -24,14 +24,15 @@
     <Button
         android:layout_width="150dp"
         android:layout_height="75dp"
-        android:text=">"
-        android:id="@+id/forward"
+        android:text="Study by Front"
+        android:id="@+id/StudyFront"
         android:layout_gravity="bottom|right"
-        android:textSize="50dp"
+        android:textSize="23dp"
         android:gravity="bottom|right"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:background="@color/white" />
+        android:background="@color/white"
+        android:onClick="TransitionFront"/>
 
 
     <LinearLayout
@@ -60,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:id="@+id/deckID"
+        android:id="@+id/deckNameDisplay"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textSize="25dp"
@@ -72,34 +73,38 @@
         android:layout_height="64dp"
         android:id="@+id/editButton"
         android:layout_weight="0.18"
-        android:layout_alignBottom="@+id/deckID"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:src="@drawable/editsymbol"
-        android:background="#ffffffff" />
+        android:background="#ffffffff"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/Definitions" />
 
     <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:choiceMode="singleChoice"
         android:listSelector="@android:color/darker_gray"
         android:id="@+id/word"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
         android:layout_below="@+id/deckID"
-        android:layout_toStartOf="@+id/deckID"
-        android:layout_marginBottom="75dp" />
+        android:layout_toStartOf="@+id/StudyFront"
+        android:layout_marginBottom="75dp"
+        android:layout_marginTop="35dp"
+        android:layout_alignRight="@+id/StudyBack"
+        android:layout_alignEnd="@+id/StudyBack" />
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:choiceMode="singleChoice"
+        android:layout_weight="1"
         android:listSelector="@android:color/darker_gray"
         android:id="@+id/Definitions"
         android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:layout_below="@+id/deckID"
         android:layout_toEndOf="@+id/word"
-        android:layout_marginBottom="75dp" />
+        android:layout_marginBottom="75dp"
+        android:layout_alignTop="@+id/word" />
 
 </RelativeLayout>
