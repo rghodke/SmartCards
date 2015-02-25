@@ -12,6 +12,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.admin.models.Card;
+
+import java.util.ArrayList;
+
 public class CardDBAdapter {
     public static final String KEY_ROWID = "_id";
     public static final String KEY_DECK = "deckID";
@@ -116,6 +120,28 @@ public class CardDBAdapter {
         }
         return mCursor;
 
+    }
+
+    public ArrayList<Card> fetchCards(int deck) throws SQLException {
+        ArrayList<Card> cardList = null;
+
+        Cursor mCursor;
+        mCursor = db.query(true, SQLITE_TABLE, new String[] {KEY_ROWID, KEY_FRONT, KEY_BACK},
+                KEY_DECK + " == " + deck, null,
+                null, null, null, null);
+
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+
+            do {
+                String frontStr = mCursor.getString(1);
+                String backStr = mCursor.getString(2);
+                Card newCard = new Card(frontStr, backStr, deck);
+                cardList.add(newCard);
+            } while (mCursor.moveToNext());
+        }
+
+        return cardList;
     }
 
     /*public void insertTestDecks() {

@@ -1,28 +1,29 @@
 package com.example.admin.daos;
 
 /**
- * Created by Kyle on 2/19/15.
+ * Created by Kyle on 2/25/15.
  */
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class DeckDBAdapter {
+public class UserDBAdapter {
     public static final String KEY_ROWID = "_id";
     public static final String KEY_NAME = "name";
-    public static final String KEY_COURSE = "course";
+    public static final String KEY_UNAME = "uName";
+    public static final String KEY_PWD = "pwd";
+    public static final String KEY_EMAIL = "email";
 
-    private static final String TAG = "com.example.admin.daos.DeckDBAdapter";
+    private static final String TAG = "com.example.admin.daos.UserDBAdapter";
     private DatabaseHelper dbHelper;
     private SQLiteDatabase db;
 
     private static final String DATABASE_NAME = "smartCards";
-    private static final String SQLITE_TABLE = "myDecks";
+    private static final String SQLITE_TABLE = "users";
     private static final int DATABASE_VERSION = 1;
 
     private final Context ctx;
@@ -31,7 +32,9 @@ public class DeckDBAdapter {
             "CREATE TABLE if not exists " + SQLITE_TABLE + " (" +
                     KEY_ROWID + " INTEGER PRIMARY KEY autoincrement," +
                     KEY_NAME + " VARCHAR(255)," +
-                    KEY_COURSE + " VARCHAR(255));";
+                    KEY_UNAME + " VARCHAR(255)," +
+                    KEY_PWD + " VARCHAR(255)," +
+                    KEY_EMAIL + " VARCHAR(255));";
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -54,11 +57,11 @@ public class DeckDBAdapter {
         }
     }
 
-    public DeckDBAdapter(Context ctx) {
+    public UserDBAdapter(Context ctx) {
         this.ctx = ctx;
     }
 
-    public DeckDBAdapter open() throws SQLException {
+    public UserDBAdapter open() throws SQLException {
         dbHelper = new DatabaseHelper(ctx);
         db = dbHelper.getWritableDatabase();
         return this;
@@ -70,63 +73,16 @@ public class DeckDBAdapter {
         }
     }
 
-    public long createDeck(String name, String course) {
+    public long createUser(String name, String uname, String pwd, String email) {
 
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_NAME, name);
-        initialValues.put(KEY_COURSE, course);
+        initialValues.put(KEY_UNAME, uname);
+        initialValues.put(KEY_PWD, pwd);
+        initialValues.put(KEY_EMAIL, email);
 
         return db.insert(SQLITE_TABLE, null, initialValues);
     }
-
-    public boolean deleteAllDecks() {
-
-        int doneDelete = 0;
-        doneDelete = db.delete(SQLITE_TABLE, null , null);
-        Log.w(TAG, Integer.toString(doneDelete));
-        return doneDelete > 0;
-
-    }
-
-    public Cursor fetchDecksByName(String inputText) throws SQLException {
-        Log.w(TAG, inputText);
-        Cursor mCursor = null;
-        if (inputText == null  ||  inputText.length () == 0)  {
-            mCursor = db.query(SQLITE_TABLE, new String[] {KEY_ROWID, KEY_NAME},
-                    null, null, null, null, null);
-
-        }
-        else {
-            mCursor = db.query(true, SQLITE_TABLE, new String[] {KEY_ROWID, KEY_NAME},
-                    KEY_NAME + " like '%" + inputText + "%'", null,
-                    null, null, null, null);
-        }
-        if (mCursor != null) {
-            mCursor.moveToFirst();
-        }
-        return mCursor;
-
-    }
-
-    public Cursor fetchAllDecks() {
-
-        Cursor mCursor = db.query(SQLITE_TABLE, null,
-                null, null, null, null, null);
-
-        if (mCursor != null) {
-            mCursor.moveToFirst();
-        }
-        return mCursor;
-    }
-
-    public void insertTestDecks() {
-
-        createDeck("Test", "CAT3");
-        createDeck("Gundam", "SHA3");
-        createDeck("Data Structs", "CSE100");
-
-    }
-
 }
 
 

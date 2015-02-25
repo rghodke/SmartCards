@@ -12,13 +12,12 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.example.admin.daos.CardDBAdapter;
+import com.example.admin.models.Deck;
 
-import org.w3c.dom.Text;
 
 public class DeckOpen extends Activity {
     ListView cardListFront, cardListBack;
-    TextView DeckID;
-
+    Deck currentDeck;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,24 +27,20 @@ public class DeckOpen extends Activity {
         String idStr = intent.getStringExtra("deckID");
         long deckID = Long.parseLong(intent.getStringExtra("deckID"));
         String deckName = intent.getStringExtra("deckName");
+        String deckCourse = intent.getStringExtra("deckCourse");
 
-        /*if (deckID == 0)
-        {
-            Toast.makeText(getApplicationContext(),
-                    "0", Toast.LENGTH_LONG)
-                    .show();
-        }
-        else
-        {
-            Toast.makeText(getApplicationContext(),
-                    idStr, Toast.LENGTH_LONG)
-                    .show();
-        }*/
+        TextView deckNameDisp = (TextView) findViewById(R.id.deckNameDisplay);
+        deckNameDisp.setText(deckName);
+
+        //currentDeck = new Deck(deckCourse, deckName);
 
         CardDBAdapter dbHelper = new CardDBAdapter(this);
         SimpleCursorAdapter dataAdapterFront, dataAdapterBack;
 
         dbHelper.open();
+
+        currentDeck = new Deck(deckCourse, deckName);
+        currentDeck.setCardArray(dbHelper.fetchCards((int) deckID));
 
         Cursor cursorFront = dbHelper.fetchCardFrontsByDeck((int) deckID);
         Cursor cursorBack = dbHelper.fetchCardBacksByDeck((int)deckID);
@@ -78,16 +73,21 @@ public class DeckOpen extends Activity {
 
         cardListFront.setAdapter(dataAdapterFront);
         cardListBack.setAdapter(dataAdapterBack);
-
-        DeckID = (TextView) findViewById(R.id.deckNameDisplay);
-        DeckID.setText(deckName);
-
     }
-
 
     public void TransitionFront (View view)
     {
         Intent intent = new Intent(DeckOpen.this, CardFront.class);
+        intent.putExtra("deck", currentDeck);
+        intent.putExtra("mode", "front");
+        startActivity(intent);
+    }
+
+    public void TransitionBack (View view)
+    {
+        Intent intent = new Intent(DeckOpen.this, CardFront.class);
+        intent.putExtra("deck", currentDeck);
+        intent.putExtra("mode", "back");
         startActivity(intent);
     }
 

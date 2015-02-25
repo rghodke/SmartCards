@@ -33,7 +33,6 @@ public class DeckList extends Activity {
 
         Cursor cursor = dbHelper.fetchAllDecks();
 
-
         String[] columns = new String[] {
                 DeckDBAdapter.KEY_ROWID,
                 DeckDBAdapter.KEY_NAME
@@ -113,11 +112,13 @@ public class DeckList extends Activity {
 
                 String deckID = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
                 String deckName = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                String deckCourse = cursor.getString(cursor.getColumnIndexOrThrow("course"));
                 //long testID = cursor.getColumnIndexOrThrow("_id");
 
                 Intent intent = new Intent(DeckList.this, DeckOpen.class);
                 intent.putExtra("deckID", deckID);
                 intent.putExtra("deckName", deckName);
+                intent.putExtra("deckCourse", deckCourse);
                 startActivity(intent);
                 //String textstuff = (TextView) view.findViewById(android.R.id.text1)).getText().toString();
 

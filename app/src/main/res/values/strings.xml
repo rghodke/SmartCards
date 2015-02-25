@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">SmartCards</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="name">Name</string>
+    <string name="user_name">User Name</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
     <string name="action_settings">Settings</string>
 
     <color name="white">#FFFFFF</color>
@@ -12,5 +14,9 @@
     <string name="title_activity_create_card_back">CreateCardBack</string>
     <string name="title_activity_deck_open">DeckOpen</string>
     <string name="title_activity_card_front">CardFront</string>
+    <string name="title_activity_card_back">CardBack</string>
+    <string name="title_activity_score_screen">ScoreScreen</string>
+    <string name="title_activity_testclass">testclass</string>
+    <string name="title_activity_create_account">CreateAccount</string>
 
 </resources>

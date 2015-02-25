@@ -3,6 +3,10 @@
     package="com.example.admin.smartcards" >
 
     <uses-sdk android:minSdkVersion="11" />
+        
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <android:uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
@@ -53,7 +57,26 @@
         </activity>
         <activity
             android:name=".CardFront"
-            android:label="@string/title_activity_card_front" >
+            android:label="@string/title_activity_card_front"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name=".CardBack"
+            android:label="@string/title_activity_card_back"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name=".ScoreScreen"
+            android:label="@string/title_activity_score_screen"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name=".testclass"
+            android:label="@string/title_activity_testclass" >
+        </activity>
+        <activity
+            android:name=".CreateAccount"
+            android:label="@string/title_activity_create_account" >
         </activity>
     </application>
 

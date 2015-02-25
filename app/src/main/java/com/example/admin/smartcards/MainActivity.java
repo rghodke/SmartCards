@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,10 +28,10 @@ public class MainActivity extends Activity {
 
         SQLiteDatabase db = openOrCreateDatabase("smartCards", Context.MODE_PRIVATE, null);
 
-//        db.execSQL("DROP TABLE cards");
-   //     db.execSQL("DROP TABLE myDecks");
+        //db.execSQL("DROP TABLE cards");
+        //db.execSQL("DROP TABLE myDecks");
 
-        db.execSQL("CREATE TABLE IF NOT EXISTS myDecks (_id INTEGER PRIMARY KEY, name VARCHAR(255))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS myDecks (_id INTEGER PRIMARY KEY, name VARCHAR(255), course VARCHAR(255))");
 
         db.execSQL("CREATE TABLE IF NOT EXISTS cards (_id INTEGER PRIMARY KEY, deckID INTEGER, frontStr VARCHAR(255), backStr VARCHAR(255), FOREIGN KEY (deckID) REFERENCES myDecks(_id))");
 
@@ -40,12 +42,14 @@ public class MainActivity extends Activity {
         if(cursor.getCount() == 0) {
 
             ContentValues values = new ContentValues();
-            values.put("Name", "Test Deck");
+            values.put("name", "Test Deck");
+            values.put("course", "CAT 3");
             db.insert("myDecks", null, values);
 
             values.clear();
 
-            values.put("Name", "CSE 100");
+            values.put("name", "Data Structs");
+            values.put("course", "CSE 100");
             db.insert("myDecks", null, values);
 
             values.clear();
@@ -57,15 +61,40 @@ public class MainActivity extends Activity {
 
             values.clear();
 
+            values.put("deckID", 1);
+            values.put("frontStr", "Test2");
+            values.put("backStr", "Test string 2");
+            db.insert("cards", null, values);
+
+            values.clear();
+
             values.put("deckID", 2);
             values.put("frontStr", "Data Structures");
             values.put("backStr", "Insert definition here");
             db.insert("cards", null, values);
 
             values.clear();
+
+            values.put("deckID", 2);
+            values.put("frontStr", "Data Structures2");
+            values.put("backStr", "Insert definition here 2");
+            db.insert("cards", null, values);
+
+            values.clear();
+
+            values.put("deckID", 2);
+            values.put("frontStr", "Data Structures3");
+            values.put("backStr", "Insert definition here 3");
+            db.insert("cards", null, values);
+
+            values.clear();
         }
 
         db.close();
+
+        EditText password = (EditText) findViewById(R.id.passwordlogin);
+        password.setTypeface(Typeface.DEFAULT);
+        password.setTransformationMethod(new PasswordTransformationMethod());
     }
 
 
@@ -74,8 +103,8 @@ public class MainActivity extends Activity {
         password = (EditText)findViewById(R.id.passwordlogin);
         if (username.getText().toString().equals("admin") &&
                 password.getText().toString().equals("admin")) {
-            Toast.makeText(getApplicationContext(), "Redirecting...",
-                    Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(), "Redirecting...",
+//                    Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, DeckList.class);
             startActivity(intent);
         }
@@ -83,6 +112,13 @@ public class MainActivity extends Activity {
             Toast.makeText(getApplicationContext(), "...",
                     Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void createaccount(View view) {
+
+            Intent intent = new Intent(MainActivity.this, CreateAccount.class);
+            startActivity(intent);
+
     }
 
 

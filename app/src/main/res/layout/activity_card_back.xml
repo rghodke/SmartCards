@@ -30,15 +30,15 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:gravity="center_vertical|center_horizontal"
-        android:onClick="GoBacktoDeckView"/>
+        android:onClick = "GoBacktoDeckView"/>
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="250dp"
-        android:id="@+id/FrontDisplay"
+        android:id="@+id/BackDisplay"
         android:ellipsize="start"
         android:gravity="center_vertical|center_horizontal"
-        android:text="Card Front"
+        android:text="Card Back"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -46,14 +46,25 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FLIP"
-        android:id="@+id/FlipButton"
+        android:text="Wrong"
+        android:id="@+id/Wrong"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/FrontDisplay"
-        android:layout_alignEnd="@+id/FrontDisplay"
         android:background="#ffffffff"
-        android:onClick="FlipCard"/>
+        android:onClick="FlipCard"
+        android:layout_alignRight="@+id/BackButton"
+        android:layout_alignEnd="@+id/BackButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Right"
+        android:id="@+id/Right"
+        android:background="#ffffffff"
+        android:onClick="FlipCard"
+        android:layout_alignTop="@+id/Wrong"
+        android:layout_alignRight="@+id/BackDisplay"
+        android:layout_alignEnd="@+id/BackDisplay" />
 
 </RelativeLayout>

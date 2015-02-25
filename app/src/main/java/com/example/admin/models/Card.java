@@ -1,0 +1,63 @@
+package com.example.admin.models;
+
+/**
+ * Created by Kyle on 2/23/15.
+ */
+public class Card {
+
+    String frontStr;
+    String backStr;
+    int deckID;
+    boolean isRight;
+
+    public Card() {
+    }
+
+    public Card(String frontStr, String backStr, int deckID) {
+        this.frontStr = frontStr;
+        this.backStr = backStr;
+        this.deckID = deckID;
+        isRight = false;
+    }
+
+    public int getDeckID()
+    {
+        return this.deckID;
+    }
+
+    public void setDeckID(int deckID)
+    {
+        this.deckID = deckID;
+    }
+
+    public String getFrontStr()
+    {
+        return this.frontStr;
+    }
+
+    public void setFrontStr(String frontStr)
+    {
+        this.frontStr = frontStr;
+    }
+
+    public String getBackStr()
+    {
+        return this.backStr;
+    }
+
+    public void setBackStr(String backStr)
+    {
+        this.backStr = backStr;
+    }
+
+    public boolean getIsRight()
+    {
+        return this.isRight;
+    }
+
+    public void setIsRight(boolean flag)
+    {
+        this.isRight = flag;
+    }
+
+}

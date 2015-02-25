@@ -30,32 +30,35 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/EnterTitle"
+        android:id="@+id/enterTitle"
         android:layout_below="@+id/linearLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:text="Enter Title"
-        android:textSize="25dp" />
+        android:hint="Enter Title"
+        android:textSize="25dp"
+        android:onClick="entertitleclick"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/EnterCourse"
-        android:text="Enter Course"
+        android:id="@+id/enterCourse"
+        android:hint="Enter Course"
         android:textSize="25dp"
-        android:layout_below="@+id/EnterTitle"
+        android:layout_below="@+id/enterTitle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="entercourseclick"/>
 
     <EditText
+
         android:layout_width="fill_parent"
         android:layout_height="250dp"
-        android:id="@+id/CardFront"
-        android:layout_below="@+id/EnterCourse"
+        android:id="@+id/enterCardFront"
+        android:layout_below="@+id/enterCourse"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="20dp"
@@ -63,7 +66,11 @@
         android:layout_marginRight="40dp"
         android:ellipsize="start"
         android:gravity="center_vertical|center_horizontal"
-        android:text="Enter Card Front" />
+        android:hint="Enter Card Front"
+        android:onClick="entercardfront"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -84,6 +91,14 @@
             android:textSize="50dp"
             android:gravity="bottom|left"
             android:background="@color/white" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="101dp"
+            android:layout_height="78dp"
+            android:text="New Button"
+            android:onClick="voicerecord"
+            android:id="@+id/button5" />
 
         <Button
             android:layout_width="fill_parent"
