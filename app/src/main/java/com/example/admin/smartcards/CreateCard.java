@@ -13,10 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -67,7 +66,7 @@ public class CreateCard extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
     }
     private static final int REQUEST_CODE = 1234;
-    Button Start;
+    ImageButton Start;
     EditText Speech;
     Dialog match_text_dialog;
     ListView textlist;
@@ -100,12 +99,12 @@ public class CreateCard extends Activity {
         course = intent.getStringExtra("course");
         String deck = Integer.toString(newDeck);
 
-        Start = (Button)findViewById(R.id.button5);
+        Start = (ImageButton)findViewById(R.id.button5);
 
         EditText as = (EditText)findViewById(R.id.enterCardFront);
         as.requestFocus();
 
-        Speech = null;
+        Speech = (EditText) findViewById(R.id.enterCardFront);
 
 
         //Toast.makeText(getApplicationContext(),
@@ -169,8 +168,8 @@ public class CreateCard extends Activity {
 
     public void goDone (View view)
     {
-        //    Intent intent = new Intent(CreateCard.this, DeckList.class);
-        //    startActivity(intent);
+            Intent intent = new Intent(CreateCard.this, DeckList.class);
+            startActivity(intent);
     }
 
     @Override

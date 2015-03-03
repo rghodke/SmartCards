@@ -123,7 +123,7 @@ public class CardDBAdapter {
     }
 
     public ArrayList<Card> fetchCards(int deck) throws SQLException {
-        ArrayList<Card> cardList = null;
+        ArrayList<Card> cardList = new ArrayList();
 
         Cursor mCursor;
         mCursor = db.query(true, SQLITE_TABLE, new String[] {KEY_ROWID, KEY_FRONT, KEY_BACK},

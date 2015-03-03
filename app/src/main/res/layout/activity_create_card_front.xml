@@ -15,6 +15,7 @@
             android:background="#ff888f93"
             android:id="@+id/BackButton"
             android:src="@drawable/back"
+            android:onClick="goBack"
             android:scaleType="fitCenter"
             android:paddingTop="22dp"
             android:paddingBottom="22dp"
@@ -67,13 +68,15 @@
         android:textColor="#8058595b" />
 
     <EditText
+
         android:layout_width="fill_parent"
         android:layout_height="210dp"
-        android:id="@+id/enterCardBack"
+        android:id="@+id/enterCardFront"
         android:layout_below="@+id/viewCourse"
         android:ellipsize="start"
         android:gravity="center_vertical|center_horizontal"
-        android:hint="Enter Card Back"
+        android:hint="Enter Card Front"
+        android:onClick="entercardfront"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:layout_margin="20dp"
@@ -91,8 +94,8 @@
         android:id="@+id/button5"
         android:layout_centerHorizontal="true"
         android:layout_alignParentEnd="false"
-        android:layout_alignBottom="@+id/enterCardBack"
-        android:layout_alignLeft="@+id/enterCardBack"
+        android:layout_alignBottom="@+id/enterCardFront"
+        android:layout_alignLeft="@+id/enterCardFront"
         android:scaleType="fitCenter"
         android:padding="10dp" />
 
@@ -102,11 +105,11 @@
         android:layout_weight="1"
         android:id="@+id/Forward"
         android:layout_gravity="bottom"
-        android:hint="Enter Another Card"
+        android:hint="Enter Card Back"
         android:textSize="18dp"
         android:background="@color/white"
-        android:onClick="nextCard"
-        android:layout_below="@+id/enterCardBack"
+        android:onClick="createBack"
+        android:layout_below="@+id/enterCardFront"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="20dp"

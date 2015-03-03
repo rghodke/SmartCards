@@ -1,9 +1,13 @@
 package com.example.admin.smartcards;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class CreateAccount extends ActionBarActivity {
@@ -36,4 +40,13 @@ public class CreateAccount extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void signUp(View view) {
+
+            Intent intent = new Intent(CreateAccount.this, DeckList.class);
+            startActivity(intent);
+
+    }
+
+
 }

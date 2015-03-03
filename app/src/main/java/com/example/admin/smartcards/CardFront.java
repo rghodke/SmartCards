@@ -43,6 +43,7 @@ public class CardFront extends Activity {
         {
             cardFrontDisplay.setText(currCard.getBackStr());
         }
+
     }
 
     public void FlipCard (View view)
@@ -57,6 +58,8 @@ public class CardFront extends Activity {
     public void GoBacktoDeckView(View view)
     {
         Intent intent = new Intent(CardFront.this, ScoreScreen.class);
+        
+				intent.putExtra("deck", currDeck);
         startActivity(intent);
     }
 

@@ -24,7 +24,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,41 +34,46 @@
         <activity
             android:name=".DeckList"
             android:label="@string/title_activity_deck_list"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
             android:name=".CreateCard"
             android:label="@string/title_activity_create_card"
             android:parentActivityName=".DeckList"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.admin.smartcards.DeckList" />
         </activity>
         <activity
+            android:name=".CreateCardFront"
+            android:label="@string/title_activity_create_card"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <activity
             android:name=".CreateCardBack"
             android:label="@string/title_activity_create_card_back"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
             android:name=".DeckOpen"
             android:label="@string/title_activity_deck_open"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
             android:name=".CardFront"
             android:label="@string/title_activity_card_front"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
             android:name=".CardBack"
             android:label="@string/title_activity_card_back"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
             android:name=".ScoreScreen"
             android:label="@string/title_activity_score_screen"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
             android:name=".testclass"

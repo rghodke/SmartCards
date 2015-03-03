@@ -2,28 +2,35 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.admin.smartcards.CreateCard"
-    android:background="#ffffffff">
+    android:background="#ffb5bfc4">
 
     <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="75dp"
         android:orientation="horizontal"
         android:id="@+id/linearLayout">
 
-        <Button android:layout_width="fill_parent"
-            android:layout_height="75dp"
+        <ImageButton android:layout_width="fill_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Back"
-            android:background="#ffffffff"
+            android:background="#ff888f93"
             android:id="@+id/BackButton"
-            android:onClick="goBack"/>
+            android:src="@drawable/back"
+            android:onClick="goBack"
+            android:scaleType="fitCenter"
+            android:paddingTop="22dp"
+            android:paddingBottom="22dp"
+            android:paddingRight="100dp" />
 
-        <Button android:layout_width="fill_parent"
-            android:layout_height="75dp"
+        <ImageButton android:layout_width="fill_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Done"
-            android:background="#ffffffff"
+            android:background="#ff888f93"
             android:id="@+id/DoneButton"
-            android:onClick="goDone"/>
+            android:onClick="goDone"
+            android:scaleType="fitCenter"
+            android:paddingTop="22dp"
+            android:paddingBottom="22dp"
+            android:paddingLeft="100dp" />
 
     </LinearLayout>
 
@@ -37,80 +44,104 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:hint="Enter Title"
-        android:textSize="25dp"
-        android:onClick="entertitleclick"/>
+        android:imeOptions="actionNext"
+        android:textSize="20dp"
+        android:onClick="entertitleclick"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="#ffffffff"
+        android:padding="10dp"
+        android:inputType="textCapWords" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/enterCourse"
         android:hint="Enter Course"
-        android:textSize="25dp"
+        android:imeOptions="actionNext"
+        android:textSize="20dp"
         android:layout_below="@+id/enterTitle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:onClick="entercourseclick"/>
+        android:onClick="entercourseclick"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#ffffffff"
+        android:padding="10dp"
+        android:inputType="textCapCharacters|text" />
 
     <EditText
 
         android:layout_width="fill_parent"
-        android:layout_height="250dp"
+        android:layout_height="210dp"
         android:id="@+id/enterCardFront"
         android:layout_below="@+id/enterCourse"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
         android:ellipsize="start"
         android:gravity="center_vertical|center_horizontal"
         android:hint="Enter Card Front"
+        android:imeOptions="actionDone"
         android:onClick="entercardfront"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        />
+        android:layout_margin="20dp"
+        android:background="#ffffffff"
+        android:inputType="textAutoCorrect" />
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <ImageButton
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:onClick="voicerecord"
+        android:src="@drawable/voice"
+        android:background="@android:color/transparent"
+        android:id="@+id/button5"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="false"
+        android:layout_alignBottom="@+id/enterCardFront"
+        android:layout_alignLeft="@+id/enterCardFront"
+        android:scaleType="fitCenter"
+        android:padding="10dp" />
+
+    <!--<LinearLayout-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:id="@+id/linearLayout4">-->
+
+        <!--<Button-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="75dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="&lt;"-->
+            <!--android:id="@+id/Backward"-->
+            <!--android:layout_gravity="bottom"-->
+            <!--android:textSize="50dp"-->
+            <!--android:gravity="bottom|left"-->
+            <!--android:background="@color/white" />-->
+
+    <!--</LinearLayout>-->
+
+    <Button
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_alignParentBottom="true"
+        android:layout_weight="1"
+        android:id="@+id/Forward"
+        android:layout_gravity="bottom"
+        android:hint="Enter Card Back"
+        android:textSize="20dp"
+        android:background="@color/white"
+        android:onClick="createBack"
+        android:layout_below="@+id/enterCardFront"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="75dp"
-            android:layout_weight="1"
-            android:text="&lt;"
-            android:id="@+id/Backward"
-            android:layout_gravity="bottom"
-            android:textSize="50dp"
-            android:gravity="bottom|left"
-            android:background="@color/white" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="101dp"
-            android:layout_height="78dp"
-            android:text="New Button"
-            android:onClick="voicerecord"
-            android:id="@+id/button5" />
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="75dp"
-            android:layout_weight="1"
-            android:text=">"
-            android:id="@+id/Forward"
-            android:layout_gravity="bottom"
-            android:textSize="50dp"
-            android:gravity="bottom|right"
-            android:background="@color/white"
-            android:onClick="createBack"/>
-    </LinearLayout>
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingTop="50dp" />
 
 </RelativeLayout>

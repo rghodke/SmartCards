@@ -1,9 +1,11 @@
 package com.example.admin.models;
 
+import java.io.Serializable;
+
 /**
  * Created by Kyle on 2/23/15.
  */
-public class Card {
+public class Card implements Serializable {
 
     String frontStr;
     String backStr;

@@ -69,22 +69,22 @@ public class MainActivity extends Activity {
             values.clear();
 
             values.put("deckID", 2);
-            values.put("frontStr", "Data Structures");
-            values.put("backStr", "Insert definition here");
+            values.put("frontStr", "Term 1");
+            values.put("backStr", "Definition 1");
             db.insert("cards", null, values);
 
             values.clear();
 
             values.put("deckID", 2);
-            values.put("frontStr", "Data Structures2");
-            values.put("backStr", "Insert definition here 2");
+            values.put("frontStr", "Term 2");
+            values.put("backStr", "Definition 2");
             db.insert("cards", null, values);
 
             values.clear();
 
             values.put("deckID", 2);
-            values.put("frontStr", "Data Structures3");
-            values.put("backStr", "Insert definition here 3");
+            values.put("frontStr", "Term 3");
+            values.put("backStr", "Definition 3");
             db.insert("cards", null, values);
 
             values.clear();

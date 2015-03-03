@@ -1,70 +1,120 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_height="match_parent"
     tools:context="com.example.admin.smartcards.CardFront"
-    android:background="#ffffffff">
+    android:background="#ffb5bfc4">
 
-    <Button
-        android:layout_width="150dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:text="Back"
-        android:id="@+id/BackButton"
-        android:textSize="23dp"
-        android:background="@color/white"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:gravity="center_vertical|center_horizontal" />
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentEnd="false"
+        android:background="#ff888f93">
+        <ImageButton android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:id="@+id/BackButton"
+            android:src="@drawable/back"
+            android:scaleType="fitCenter"
+            android:paddingTop="22dp"
+            android:paddingBottom="22dp"
+            android:paddingRight="100dp" />
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="75dp"
+            android:id="@+id/DoneButton"
+            android:layout_centerHorizontal="true"
+            android:text="done"
+            android:textSize="20sp"
+            android:background="@android:color/transparent"
+            android:textColor="#ff646464"
+            android:layout_weight="1"
+            android:onClick="GoBacktoDeckView"
+            android:paddingLeft="110dp" />
 
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="75dp"
-        android:text="Done"
-        android:id="@+id/DoneButton"
-        android:textSize="23dp"
-        android:background="@color/white"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:gravity="center_vertical|center_horizontal"
-        android:onClick = "GoBacktoDeckView"/>
+    </LinearLayout>
 
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="250dp"
+        android:layout_height="210dp"
+        android:ellipsize="start"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:background="#ffe6e6e6"
+        android:layout_marginLeft="31dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_alignTop="@+id/BackDisplay" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="210dp"
+        android:ellipsize="start"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:background="#fff2f2f2"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="17dp"
+        android:layout_marginTop="8dp"
+        android:layout_alignTop="@+id/BackDisplay" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="210dp"
         android:id="@+id/BackDisplay"
         android:ellipsize="start"
         android:gravity="center_vertical|center_horizontal"
         android:text="Card Back"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Wrong"
-        android:id="@+id/Wrong"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="#ffffffff"
-        android:onClick="FlipCard"
-        android:layout_alignRight="@+id/BackButton"
-        android:layout_alignEnd="@+id/BackButton" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="25dp" />
 
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Right"
-        android:id="@+id/Right"
-        android:background="#ffffffff"
-        android:onClick="FlipCard"
-        android:layout_alignTop="@+id/Wrong"
-        android:layout_alignRight="@+id/BackDisplay"
-        android:layout_alignEnd="@+id/BackDisplay" />
+        android:layout_alignParentBottom="true">
+
+        <ImageButton
+            android:layout_width="fill_parent"
+            android:layout_height="75dp"
+            android:id="@+id/Wrong"
+            android:onClick="cardWrong"
+            android:layout_centerHorizontal="true"
+            android:text="Wrong"
+            android:src="@drawable/wrong"
+            android:textSize="20sp"
+            android:background="#ff888f93"
+            android:textColor="#ffffffff"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:scaleType="fitCenter" />
+
+        <ImageButton
+            android:layout_width="fill_parent"
+            android:layout_height="75dp"
+            android:id="@+id/Right"
+            android:onClick="cardCorrect"
+            android:layout_centerHorizontal="true"
+            android:text="Right"
+            android:src="@drawable/done"
+            android:textSize="20sp"
+            android:background="#ff888f93"
+            android:textColor="#ffffffff"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp" />
+
+    </LinearLayout>
+
+
 
 </RelativeLayout>

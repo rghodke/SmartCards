@@ -45,47 +45,63 @@ public class CardBack extends Activity {
             cardBackDisplay.setText(currCard.getFrontStr());
         }
 
-        cardIndex++;
     }
 
     public void GoBacktoDeckView(View view)
     {
         Intent intent = new Intent(CardBack.this, ScoreScreen.class);
+        
+				intent.putExtra("deck", currDeck);
         startActivity(intent);
     }
 
     public void cardCorrect(View view)
     {
+        cardIndex++;
         int arraySize = cardArray.size();
 
-        currCard.setIsRight(true);
-        cardArray.set(cardIndex, currCard);
-        currDeck.setCardArray(cardArray);
-
-        if ((cardIndex + 1) == arraySize)
+        if (cardIndex == arraySize)
         {
+            currCard.setIsRight(true);
+            cardArray.set((cardIndex-1), currCard);
+            currDeck.setCardArray(cardArray);
+
             Intent intent = new Intent(CardBack.this, ScoreScreen.class);
+            intent.putExtra("deck", currDeck);
             startActivity(intent);
         }
         else
         {
+            currCard.setIsRight(true);
+            cardArray.set((cardIndex-1), currCard);
+            currDeck.setCardArray(cardArray);
+
             Intent intent = new Intent(CardBack.this, CardFront.class);
+            intent.putExtra("deck", currDeck);
+            intent.putExtra("mode", mode);
+            intent.putExtra("index", cardIndex);
             startActivity(intent);
         }
     }
 
     public void cardWrong(View view)
     {
+        cardIndex++;
         int arraySize = cardArray.size();
 
-        if ((cardIndex + 1) == arraySize)
+        if (cardIndex == arraySize)
         {
             Intent intent = new Intent(CardBack.this, ScoreScreen.class);
+            intent.putExtra("deck", currDeck);
             startActivity(intent);
         }
         else
         {
             Intent intent = new Intent(CardBack.this, CardFront.class);
+            intent.putExtra("deck", currDeck);
+            intent.putExtra("mode", mode);
+            intent.putExtra("index", cardIndex);
+            startActivity(intent);
         }
     }
 

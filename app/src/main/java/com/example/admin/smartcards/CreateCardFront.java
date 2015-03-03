@@ -13,30 +13,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.admin.daos.CardDBAdapter;
-import com.example.admin.daos.DeckDBAdapter;
-
 import java.util.ArrayList;
 
 
-public class CreateCardBack extends Activity {
+public class CreateCardFront extends Activity {
+
+    int newDeck = 0;
+    String title;
+    String course;
 
     TextView ViewTitle;
     TextView ViewCourse;
-    EditText enterCardBack;
 
-    String title;
-    String course;
-    String cardFront;
-    String cardBack;
-    int newDeck = 0;
 
     public  boolean isConnected()
     {
@@ -51,7 +45,7 @@ public class CreateCardBack extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-            match_text_dialog = new Dialog(CreateCardBack.this);
+            match_text_dialog = new Dialog(CreateCardFront.this);
             match_text_dialog.setContentView(R.layout.dialog_matches_frag);
             match_text_dialog.setTitle("Select Matching Text");
             textlist = (ListView)match_text_dialog.findViewById(R.id.list);
@@ -72,7 +66,6 @@ public class CreateCardBack extends Activity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
-
     private static final int REQUEST_CODE = 1234;
     ImageButton Start;
     EditText Speech;
@@ -80,17 +73,35 @@ public class CreateCardBack extends Activity {
     ListView textlist;
     ArrayList<String> matches_text;
 
+    public void entercardfront (View view)
+    {
+        Speech = (EditText) findViewById(R.id.enterCardFront);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_card_back);
+        setContentView(R.layout.activity_create_card_front);
+
+        ViewTitle = (TextView) findViewById(R.id.viewTitle);
+        ViewCourse = (TextView) findViewById(R.id.viewCourse);
+
+        Intent intent = getIntent();
+        newDeck = intent.getIntExtra("newDeck", 0);
+        title = intent.getStringExtra("title");
+        course = intent.getStringExtra("course");
+        String deck = Integer.toString(newDeck);
+
+        ViewTitle.setText(title);
+        ViewCourse.setText(course);
+
 
         Start = (ImageButton)findViewById(R.id.button5);
 
-        EditText as = (EditText)findViewById(R.id.enterCardBack);
+        EditText as = (EditText)findViewById(R.id.enterCardFront);
         as.requestFocus();
 
-        Speech = as;
+        Speech = null;
 
 
         //Toast.makeText(getApplicationContext(),
@@ -102,7 +113,7 @@ public class CreateCardBack extends Activity {
             public void onClick(View v) {
                 if(Speech == null && isConnected())
                 {
-                    Toast.makeText(getApplicationContext(), "Please select field", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Please select field", Toast.LENGTH_SHORT).show();
                 }
                 else if(isConnected()){
                     Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -114,72 +125,41 @@ public class CreateCardBack extends Activity {
                     Toast.makeText(getApplicationContext(), "Plese Connect to Internet", Toast.LENGTH_LONG).show();
                 }}
         });
-
-        enterCardBack = (EditText)findViewById(R.id.enterCardBack);
-
-        ViewTitle = (TextView) findViewById(R.id.viewTitle);
-        ViewCourse = (TextView) findViewById(R.id.viewCourse);
-
-        Intent intent = getIntent();
-        title = intent.getStringExtra("title");
-        course = intent.getStringExtra("course");
-        cardFront = intent.getStringExtra("cardFront");
-        newDeck = intent.getIntExtra("newDeck", 0);
-
-        ViewTitle.setText(title);
-        ViewCourse.setText(course);
     }
 
-    public void goDone (View view)
+    public void goBack (View view)
     {
-        cardBack = enterCardBack.getText().toString();
-
-        DeckDBAdapter deckHelper = new DeckDBAdapter(this);
-        CardDBAdapter cardHelper = new CardDBAdapter(this);
-
-        deckHelper.open();
-
-        if (newDeck == 0) {
-            newDeck = (int) deckHelper.createDeck(title, course);
-        }
-
-        cardHelper.open();
-
-        cardHelper.createCard(newDeck, cardFront, cardBack);
-
-        Intent intent = new Intent(CreateCardBack.this, DeckList.class);
+        Intent intent = new Intent(CreateCardFront.this, DeckList.class);
         startActivity(intent);
     }
 
-    public void nextCard (View view)
+
+
+
+    public void createBack (View view)
     {
-        cardBack = enterCardBack.getText().toString();
+        String title = ((TextView)findViewById(R.id.viewTitle)).getText().toString();
+        String course = ((TextView)findViewById(R.id.viewTitle)).getText().toString();
+        String cardFront = ((EditText)findViewById(R.id.enterCardFront)).getText().toString();
 
-        DeckDBAdapter deckHelper = new DeckDBAdapter(this);
-        CardDBAdapter cardHelper = new CardDBAdapter(this);
-
-        deckHelper.open();
-
-        if (newDeck == 0) {
-            newDeck = (int) deckHelper.createDeck(title, course);
-        }
-
-        cardHelper.open();
-
-        cardHelper.createCard(newDeck, cardFront, cardBack);
-
-        Intent intent = new Intent(CreateCardBack.this, CreateCardFront.class);
+        Intent intent = new Intent(CreateCardFront.this, CreateCardBack.class);
         intent.putExtra("title", title);
         intent.putExtra("course", course);
+        intent.putExtra("cardFront", cardFront);
         intent.putExtra("newDeck", newDeck);
         startActivity(intent);
     }
 
+    public void goDone (View view)
+    {
+            Intent intent = new Intent(CreateCardFront.this, DeckList.class);
+            startActivity(intent);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_create_card_back, menu);
+        getMenuInflater().inflate(R.menu.menu_create_card, menu);
         return true;
     }
 
