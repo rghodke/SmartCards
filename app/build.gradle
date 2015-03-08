@@ -22,4 +22,6 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
+    compile files('libs/Parse-1.4.3/Parse-1.4.3.jar')
+    //compile files('C:/Users/Kevin Shah/Desktop/Winter 2015/cse190/cse190-winter2015/libs/Parse-1.4.3.jar')
 }

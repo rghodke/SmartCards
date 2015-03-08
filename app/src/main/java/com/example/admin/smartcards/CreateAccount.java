@@ -1,8 +1,8 @@
 package com.example.admin.smartcards;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,10 +10,18 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import android.content.Context;
+import com.parse.Parse;
+import com.parse.ParseObject;
+
 public class CreateAccount extends ActionBarActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Parse.initialize(this, "oV6qA91rZR1xA35KeC3qu3N2tLqHCUGFEsEvjxY7", "N2Irz0ifsTeSFV0YrU0ayVpOMK29so6a8aW8fb2l");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
     }
@@ -41,10 +49,37 @@ public class CreateAccount extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public static boolean isWhite(final String string){
+        return string != null && !string.isEmpty() && !string.trim().isEmpty();
+    }
+
     public void signUp(View view) {
 
-            Intent intent = new Intent(CreateAccount.this, DeckList.class);
+        EditText username   = (EditText)findViewById(R.id.editText1);
+        EditText password   = (EditText)findViewById(R.id.editText2);
+        EditText repassword   = (EditText)findViewById(R.id.editText4);
+        EditText email   = (EditText)findViewById(R.id.editText5);
+
+        ParseObject gameScore = new ParseObject("Usernames");
+        String p = password.getText().toString();
+        String e = email.getText().toString();
+        String accountName = username.getText().toString();
+        String re_p = repassword.getText().toString();
+        final Context context = this;;
+
+        if(p.equals(re_p) && !(e).equals("")){
+            gameScore.put("usernames",accountName );
+            gameScore.put("passwords", p);
+            gameScore.put("email", e);
+            gameScore.saveInBackground();
+
+            Intent intent = new Intent(this, DeckList.class);
             startActivity(intent);
+        }else if(!p.equals(re_p)) {
+            Toast.makeText(context, "Password didn't match", Toast.LENGTH_LONG).show();
+        }else if(e.equals("")) {
+            Toast.makeText(context, "Enter Email", Toast.LENGTH_LONG).show();
+        }
 
     }
 

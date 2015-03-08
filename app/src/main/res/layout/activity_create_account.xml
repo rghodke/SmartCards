@@ -7,6 +7,18 @@
     android:background="#ffb5bfc4"
     tools:context="com.example.admin.smartcards.CreateAccount">
 
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="wrap_content"
+        android:layout_height="50dip"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_alignRight="@+id/editText2"
+        android:layout_below="@+id/editText4"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Email"
+        android:textColor="#000000" />
 
     <EditText
         android:id="@+id/editText4"
@@ -28,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editText1"
         android:layout_alignRight="@+id/editText1"
-        android:layout_below="@+id/editText4"
+        android:layout_below="@+id/editText5"
         android:layout_marginTop="50dp"
         android:onClick="signUp"
         android:text="Done" />
@@ -47,42 +59,19 @@
         android:inputType="textPassword"
         android:textColor="#000000" />
 
+
     <EditText
         android:id="@+id/editText1"
-        android:layout_width="300dip"
-        android:layout_height="50dip"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/name"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Username"
-        android:inputType="textPersonName"
-        android:textColor="#000000" />
-
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="300dip"
-        android:layout_height="50dip"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/editText4"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Email"
-        android:textColor="#000000" />
-
-    <EditText
-        android:id="@+id/name"
         android:layout_width="300dip"
         android:layout_height="50dip"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="29dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="Name"
+        android:hint="Username"
         android:inputType="textPersonName"
         android:textColor="#000000" >
 
-
-    <requestFocus />
+        <requestFocus />
     </EditText>
 </RelativeLayout>

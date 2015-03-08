@@ -66,7 +66,7 @@
             android:padding="10dp" />
 
         <Button android:layout_width="0dp" android:layout_height="wrap_content" android:text="Sign Up" android:id="@+id/button"
-            android:onClick = "createaccount"
+            android:onClick = "createAccount"
             android:layout_below="@+id/passwordlogin"
             android:layout_alignRight="@+id/passwordlogin"
             android:layout_alignEnd="@+id/passwordlogin"

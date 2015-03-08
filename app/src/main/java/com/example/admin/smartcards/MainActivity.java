@@ -15,6 +15,19 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.Parse;
+import android.content.Context;
+import com.parse.Parse;
+import java.util.List;
+
+import com.parse.Parse;
+
+import com.parse.FindCallback;
+import com.parse.ParseAnalytics;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseObject;
 
 public class MainActivity extends Activity {
 
@@ -23,6 +36,9 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Parse.initialize(this, "oV6qA91rZR1xA35KeC3qu3N2tLqHCUGFEsEvjxY7", "N2Irz0ifsTeSFV0YrU0ayVpOMK29so6a8aW8fb2l");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -99,6 +115,7 @@ public class MainActivity extends Activity {
 
 
     public void login(View view) {
+        /*
         username = (EditText)findViewById(R.id.emaillogin);
         password = (EditText)findViewById(R.id.passwordlogin);
         if (username.getText().toString().equals("admin") &&
@@ -112,14 +129,43 @@ public class MainActivity extends Activity {
             Toast.makeText(getApplicationContext(), "...",
                     Toast.LENGTH_SHORT).show();
         }
+        */
+
+        EditText username   = (EditText)findViewById(R.id.emaillogin);
+        String u = username.getText().toString();
+
+
+        ParseObject gameList = new ParseObject("Usernames");
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Usernames");
+        query.whereEqualTo("usernames", u);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> arg0, ParseException arg1) {
+                EditText password   = (EditText)findViewById(R.id.passwordlogin);
+                String p = password.getText().toString();
+                ParseObject user_pass = arg0.get(0) ;
+                Context c = MainActivity.this;
+                String password_user = user_pass.getString("passwords");
+
+                if(p.equals(password_user))
+                {
+                    Intent intent = new Intent(MainActivity.this, DeckList.class);
+                    startActivity(intent);
+                }
+                else
+                    Toast.makeText(c, "Improper Login" , Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
-    public void createaccount(View view) {
+    public void createAccount(View view) {
 
             Intent intent = new Intent(MainActivity.this, CreateAccount.class);
             startActivity(intent);
 
     }
+
 
 
     @Override
