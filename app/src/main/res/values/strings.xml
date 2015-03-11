@@ -23,5 +23,8 @@
     <string name="title_activity_score_screen">ScoreScreen</string>
     <string name="title_activity_testclass">testclass</string>
     <string name="title_activity_create_account">CreateAccount</string>
+    <string name="title_activity_testocr">testocr</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>

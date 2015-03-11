@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +21,12 @@ import android.widget.Toast;
 import com.parse.Parse;
 import android.content.Context;
 import com.parse.Parse;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 import com.parse.Parse;
@@ -34,10 +43,62 @@ public class MainActivity extends Activity {
     EditText username = null;
     EditText password = null;
 
+    private void copyAssets() {
+        AssetManager assetManager = getAssets();
+        String[] files = null;
+        try {
+            files = assetManager.list("");
+        } catch (IOException e) {
+            Log.e("tag", "Failed to get asset file list.", e);
+        }
+        for(String filename : files) {
+            //Toast.makeText(getApplicationContext(), filename,
+              //      Toast.LENGTH_SHORT).show();
+            //Log.e("tag", filename);
+            InputStream in = null;
+            OutputStream out = null;
+            try {
+                in = assetManager.open(filename);
+                //Log.e("tag",getExternalFilesDir("tessdata").toString());
+                File outFile = new File(getExternalFilesDir("tessdata"), filename);
+                out = new FileOutputStream(outFile);
+                copyFile(in, out);
+            } catch(IOException e) {
+                Log.e("tag", "Failed to copy asset file: " + filename, e);
+            }
+            finally {
+                if (in != null) {
+                    try {
+                        in.close();
+                    } catch (IOException e) {
+                        // NOOP
+                    }
+                }
+                if (out != null) {
+                    try {
+                        out.close();
+                    } catch (IOException e) {
+                        // NOOP
+                    }
+                }
+            }
+        }
+    }
+    private void copyFile(InputStream in, OutputStream out) throws IOException {
+        byte[] buffer = new byte[1024];
+        int read;
+        while((read = in.read(buffer)) != -1){
+            out.write(buffer, 0, read);
+        }
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Parse.initialize(this, "oV6qA91rZR1xA35KeC3qu3N2tLqHCUGFEsEvjxY7", "N2Irz0ifsTeSFV0YrU0ayVpOMK29so6a8aW8fb2l");
+
+
+       Parse.initialize(this, "oV6qA91rZR1xA35KeC3qu3N2tLqHCUGFEsEvjxY7", "N2Irz0ifsTeSFV0YrU0ayVpOMK29so6a8aW8fb2l");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -161,9 +222,13 @@ public class MainActivity extends Activity {
 
     public void createAccount(View view) {
 
-            Intent intent = new Intent(MainActivity.this, CreateAccount.class);
-            startActivity(intent);
+            copyAssets();
 
+        Toast.makeText(getApplicationContext(), "done",
+                Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(MainActivity.this, testocr.class);
+        startActivity(intent);
     }
 
 
