@@ -16,6 +16,9 @@ public class DeckDBAdapter {
     public static final String KEY_ROWID = "_id";
     public static final String KEY_NAME = "name";
     public static final String KEY_COURSE = "course";
+    public static final String KEY_LOCATION = "location";
+    public static final String KEY_PARSE = "parseID";
+    public static final String KEY_CREATOR = "creator";
 
     private static final String TAG = "com.example.admin.daos.DeckDBAdapter";
     private DatabaseHelper dbHelper;
@@ -31,7 +34,11 @@ public class DeckDBAdapter {
             "CREATE TABLE if not exists " + SQLITE_TABLE + " (" +
                     KEY_ROWID + " INTEGER PRIMARY KEY autoincrement," +
                     KEY_NAME + " VARCHAR(255)," +
+                    KEY_COURSE + " VARCHAR(255)," +
+                    KEY_LOCATION + " VARCHAR(255)," +
+                    KEY_PARSE + " VARCHAR(255)," +
                     KEY_COURSE + " VARCHAR(255));";
+                    //KEY_COURSE + " VARCHAR(255));";
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -75,6 +82,18 @@ public class DeckDBAdapter {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_NAME, name);
         initialValues.put(KEY_COURSE, course);
+        initialValues.put(KEY_LOCATION, "UCSD");
+
+        return db.insert(SQLITE_TABLE, null, initialValues);
+    }
+
+    public long createDeck(String name, String course, String location, String parse)
+    {
+        ContentValues initialValues = new ContentValues();
+        initialValues.put(KEY_NAME, name);
+        initialValues.put(KEY_COURSE, course);
+        initialValues.put(KEY_LOCATION, location);
+        initialValues.put(KEY_PARSE, parse);
 
         return db.insert(SQLITE_TABLE, null, initialValues);
     }
@@ -98,6 +117,26 @@ public class DeckDBAdapter {
         }
         else {
             mCursor = db.query(true, SQLITE_TABLE, new String[] {KEY_ROWID, KEY_NAME},
+                    KEY_NAME + " like '%" + inputText + "%'", null,
+                    null, null, null, null);
+        }
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+
+    }
+
+    public Cursor fetchDecksByCourse(String inputText) throws SQLException {
+        Log.w(TAG, inputText);
+        Cursor mCursor = null;
+        if (inputText == null  ||  inputText.length () == 0)  {
+            mCursor = db.query(SQLITE_TABLE, new String[] {KEY_ROWID, KEY_COURSE},
+                    null, null, null, null, null);
+
+        }
+        else {
+            mCursor = db.query(true, SQLITE_TABLE, new String[] {KEY_ROWID, KEY_COURSE},
                     KEY_NAME + " like '%" + inputText + "%'", null,
                     null, null, null, null);
         }

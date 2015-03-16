@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.admin.smartcards.DeckList"
+    tools:context="com.example.admin.smartcards.DownloadDeck"
     android:background="#ffb5bfc4">
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,43 +29,18 @@
             android:scaleType="fitCenter"
             android:padding="22dp" />
 
-        <ImageButton
-            android:contentDescription="@string/cloud_button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/locButton"
-            android:src="@drawable/cloudtransparent"
-            android:background="@android:color/transparent"
-            android:layout_weight="1"
-            android:scaleType="fitCenter"
-            android:padding="22dp"
-            android:onClick="downloadDecks"/>
     </LinearLayout>
-
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="75dp"
-        android:id="@+id/CreateDeckButton"
-        android:layout_centerHorizontal="true"
-        android:text="@string/create_deck"
-        android:onClick="CreateDeck"
-        android:layout_alignParentBottom="true"
-        android:textSize="20sp"
-        android:background="@android:color/transparent"
-        android:textColor="#ffffffff" />
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:choiceMode = "singleChoice"
         android:listSelector="@android:color/white"
         android:background="@android:color/white"
-        android:id="@+id/deckList"
+        android:id="@+id/downloadDeckList"
         android:textSize="12sp"
         android:layout_below="@+id/linearLayout3"
         android:layout_alignLeft="@+id/linearLayout3"
         android:layout_alignStart="@+id/linearLayout3"
-        android:layout_above="@+id/CreateDeckButton"
-        android:scrollbars="none" />
+        android:scrollbars="none"/>
 </RelativeLayout>

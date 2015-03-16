@@ -16,6 +16,7 @@ import com.example.admin.daos.DeckDBAdapter;
 
 public class DeckList extends Activity {
     ListView decklist;
+    SimpleCursorAdapter dataAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +28,6 @@ public class DeckList extends Activity {
         //Cursor cursor = db.rawQuery("SELECT deckID, name FROM myDecks", null);
 
         DeckDBAdapter dbHelper = new DeckDBAdapter(this);
-        SimpleCursorAdapter dataAdapter;
 
         dbHelper.open();
 
@@ -102,6 +102,7 @@ public class DeckList extends Activity {
 
         // Assign adapter to ListView
         decklist.setAdapter(dataAdapter);
+        dbHelper.close();
 
         decklist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -139,6 +140,12 @@ public class DeckList extends Activity {
         startActivity(intent);
     }
 
+    public void downloadDecks (View view)
+    {
+        Intent intent = new Intent(DeckList.this, DownloadDeck.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -159,5 +166,30 @@ public class DeckList extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        DeckDBAdapter dbHelper = new DeckDBAdapter(this);
+        dbHelper.open();
+
+        Cursor cursor = dbHelper.fetchAllDecks();
+
+        String[] columns = new String[] {
+                DeckDBAdapter.KEY_ROWID,
+                DeckDBAdapter.KEY_NAME
+        };
+
+        int[] to = new int[] {
+                R.id.deckID,
+                R.id.deckName
+        };
+
+        dataAdapter = new SimpleCursorAdapter(this, R.layout.deck_info, cursor, columns, to, 0);
+        dataAdapter.notifyDataSetChanged();
+        decklist.setAdapter(dataAdapter);
+        dbHelper.close();
     }
 }

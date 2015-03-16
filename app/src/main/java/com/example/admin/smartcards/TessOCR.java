@@ -1,13 +1,11 @@
 package com.example.admin.smartcards;
 
-import java.io.File;
-
 import android.graphics.Bitmap;
 import android.os.Environment;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.googlecode.tesseract.android.TessBaseAPI;
+
+import java.io.File;
 
 public class TessOCR {
     private TessBaseAPI mTess;

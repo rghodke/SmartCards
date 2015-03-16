@@ -113,4 +113,18 @@
         android:layout_marginRight="20dp"
         android:paddingTop="50dp" />
 
+    <ImageButton
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:onClick="ocrrecord"
+        android:src="@drawable/camera"
+        android:background="@android:color/transparent"
+        android:id="@+id/imageButton"
+        android:scaleType="fitCenter"
+        android:padding="7.5dp"
+        android:layout_alignBottom="@+id/enterCardBack"
+        android:layout_alignRight="@+id/enterCardBack"
+        android:layout_alignEnd="@+id/enterCardBack" />
+
 </RelativeLayout>

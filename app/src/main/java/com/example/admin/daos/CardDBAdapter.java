@@ -21,6 +21,7 @@ public class CardDBAdapter {
     public static final String KEY_DECK = "deckID";
     public static final String KEY_FRONT = "frontStr";
     public static final String KEY_BACK = "backStr";
+    public static final String KEY_PARSE = "parseID";
 
     private static final String TAG = "com.example.admin.daos.CardDBAdapter";
     private DatabaseHelper dbHelper;
@@ -38,6 +39,8 @@ public class CardDBAdapter {
                     KEY_DECK + " INTEGER," +
                     KEY_FRONT + " VARCHAR(255)," +
                     KEY_BACK + " VARCHAR(255), " +
+                    KEY_PARSE + " VARCHAR(255), " +
+                    "FOREIGN KEY (" + KEY_PARSE + ") REFERENCES myDecks(parseID)," +
                     "FOREIGN KEY (" + KEY_DECK + ") REFERENCES myDecks(_id));";
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
@@ -83,6 +86,17 @@ public class CardDBAdapter {
         initialValues.put(KEY_DECK, deck);
         initialValues.put(KEY_FRONT, front);
         initialValues.put(KEY_BACK, back);
+
+        return db.insert(SQLITE_TABLE, null, initialValues);
+    }
+
+    public long createCard(int deck, String front, String back, String parse) {
+
+        ContentValues initialValues = new ContentValues();
+        initialValues.put(KEY_DECK, deck);
+        initialValues.put(KEY_FRONT, front);
+        initialValues.put(KEY_BACK, back);
+        initialValues.put(KEY_PARSE, parse);
 
         return db.insert(SQLITE_TABLE, null, initialValues);
     }

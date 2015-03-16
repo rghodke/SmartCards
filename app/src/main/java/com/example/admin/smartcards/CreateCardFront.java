@@ -152,8 +152,7 @@ public class CreateCardFront extends Activity {
 
     public void goDone (View view)
     {
-            Intent intent = new Intent(CreateCardFront.this, DeckList.class);
-            startActivity(intent);
+            super.finish();
     }
 
     @Override

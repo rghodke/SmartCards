@@ -11,6 +11,7 @@ public class Card implements Serializable {
     String backStr;
     int deckID;
     boolean isRight;
+    String parseID;
 
     public Card() {
     }
@@ -52,6 +53,10 @@ public class Card implements Serializable {
         this.backStr = backStr;
     }
 
+    public String getParseID() { return this.parseID; }
+
+    public void setParseID(String parseID) { this.parseID = parseID; }
+
     public boolean getIsRight()
     {
         return this.isRight;
@@ -60,6 +65,11 @@ public class Card implements Serializable {
     public void setIsRight(boolean flag)
     {
         this.isRight = flag;
+    }
+
+    public String toString()
+    {
+        return this.frontStr + "   -   " + this.backStr;
     }
 
 }

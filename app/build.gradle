@@ -24,6 +24,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile files('libs/Parse-1.4.3/Parse-1.4.3.jar')
     compile files('libs/classes/classes.jar')
-
     compile files('libs/android-support-v4/android-support-v4.jar')
 }
+

@@ -1,20 +1,19 @@
 package com.example.admin.smartcards;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
-import android.content.Context;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
-public class CreateAccount extends ActionBarActivity {
+public class CreateAccount extends Activity {
 
 
 

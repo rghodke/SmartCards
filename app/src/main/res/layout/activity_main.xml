@@ -30,7 +30,8 @@
         android:typeface="normal"
         android:background="#ffffffff"
         android:padding="10dp"
-        android:layout_marginBottom="5dp" />
+        android:layout_marginBottom="5dp"
+        android:text="admin"/>
 
 
     <EditText android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="textPassword" android:ems="10" android:id="@+id/passwordlogin"
@@ -42,7 +43,8 @@
         android:layout_marginRight="25dp"
         android:typeface="normal"
         android:background="#ffffffff"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:text="admin"/>
 
     <LinearLayout
         android:layout_width="match_parent"

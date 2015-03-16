@@ -66,7 +66,7 @@ public class testclass extends Activity {
             textlist = (ListView)match_text_dialog.findViewById(R.id.list);
             matches_text = data
                     .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            ArrayAdapter<String> adapter =    new ArrayAdapter<String>(this,
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                     android.R.layout.simple_list_item_1, matches_text);
             textlist.setAdapter(adapter);
             textlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
