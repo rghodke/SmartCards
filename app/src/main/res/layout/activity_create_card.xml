@@ -2,37 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.admin.smartcards.CreateCard"
-    android:background="#ffb5bfc4">
+    android:background="@drawable/bg">
 
-    <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="75dp"
-        android:orientation="horizontal"
-        android:id="@+id/linearLayout">
 
-        <ImageButton android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#ff888f93"
-            android:id="@+id/BackButton"
-            android:src="@drawable/back"
-            android:onClick="goBack"
-            android:scaleType="fitCenter"
-            android:paddingTop="22dp"
-            android:paddingBottom="22dp"
-            android:paddingRight="100dp" />
-
-        <ImageButton android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#ff888f93"
-            android:id="@+id/DoneButton"
-            android:onClick="goDone"
-            android:scaleType="fitCenter"
-            android:paddingTop="22dp"
-            android:paddingBottom="22dp"
-            android:paddingLeft="100dp" />
-
-    </LinearLayout>
 
     <EditText
         android:layout_width="wrap_content"
@@ -143,6 +115,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:paddingTop="50dp" />
+
 
     <ImageButton
         style="?android:attr/buttonStyleSmall"

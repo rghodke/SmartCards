@@ -6,25 +6,16 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Matrix;
-import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.speech.RecognizerIntent;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,13 +24,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 
 public class testocr extends Activity {
@@ -57,8 +45,8 @@ public class testocr extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_card);
 
-        mResult = (TextView) findViewById(R.id.tv_result);
-        mImage = (ImageView) findViewById(R.id.image);
+        //mResult = (TextView) findViewById(R.id.tv_result);
+        //mImage = (ImageView) findViewById(R.id.image);
         //mButtonGallery = (Button) findViewById(R.id.bt_gallery);
         //mButtonGallery.setOnClickListener(this);
         //mButtonCamera = (Button) findViewById(R.id.bt_camera);

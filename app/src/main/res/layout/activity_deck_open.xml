@@ -44,7 +44,44 @@
             android:scaleType="fitCenter"
             android:paddingBottom="22dp"
             android:layout_weight="1"
-            android:paddingTop="22dp" />
+            android:paddingTop="22dp"
+            android:onClick="editDeck" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/upLoadButton"
+            android:layout_centerHorizontal="true"
+            android:text="Upload Deck"
+            android:textSize="20sp"
+            android:background="@android:color/transparent"
+            android:textColor="#ffffffff"
+            android:layout_weight="1"
+            android:onClick="uploadDeck"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/deleteButton"
+            android:layout_centerHorizontal="true"
+            android:text="Delete Deck"
+            android:textSize="20sp"
+            android:background="@android:color/transparent"
+            android:textColor="#ffffffff"
+            android:layout_weight="1"
+            android:onClick="deleteDeck"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/addButton"
+            android:layout_centerHorizontal="true"
+            android:text="Add Card"
+            android:textSize="20sp"
+            android:background="@android:color/transparent"
+            android:textColor="#ffffffff"
+            android:layout_weight="1"
+            android:onClick="addCard"/>
 
     </LinearLayout>
 

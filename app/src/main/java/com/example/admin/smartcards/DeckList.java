@@ -114,12 +114,14 @@ public class DeckList extends Activity {
                 String deckID = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
                 String deckName = cursor.getString(cursor.getColumnIndexOrThrow("name"));
                 String deckCourse = cursor.getString(cursor.getColumnIndexOrThrow("course"));
+                String deckLocation = cursor.getString(cursor.getColumnIndexOrThrow("location"));
                 //long testID = cursor.getColumnIndexOrThrow("_id");
 
                 Intent intent = new Intent(DeckList.this, DeckOpen.class);
                 intent.putExtra("deckID", deckID);
                 intent.putExtra("deckName", deckName);
                 intent.putExtra("deckCourse", deckCourse);
+                intent.putExtra("deckLocation", deckLocation);
                 startActivity(intent);
                 //String textstuff = (TextView) view.findViewById(android.R.id.text1)).getText().toString();
 

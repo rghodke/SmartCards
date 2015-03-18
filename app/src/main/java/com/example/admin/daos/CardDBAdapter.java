@@ -110,6 +110,30 @@ public class CardDBAdapter {
 
     }
 
+    public boolean deleteCardByDeck(int deckID)
+    {
+        int doneDelete = 0;
+        doneDelete = db.delete(SQLITE_TABLE, KEY_DECK + " = ?", new String[] {Integer.toString(deckID)});
+        return doneDelete > 0;
+    }
+
+    public boolean deleteCard(int cardID)
+    {
+        int doneDelete = 0;
+        doneDelete = db.delete(SQLITE_TABLE, KEY_ROWID + " = ?", new String[] {Integer.toString(cardID)});
+        return doneDelete > 0;
+    }
+
+    public int getCardCountByDeck(int deckID)
+    {
+        Cursor mCursor = null;
+        mCursor = db.query(true, SQLITE_TABLE, new String[] {KEY_ROWID},
+            KEY_DECK + " == " + deckID, null,
+            null, null, null, null);
+        int count = mCursor.getCount();
+        return count;
+    }
+
     public Cursor fetchCardFrontsByDeck(int deck) throws SQLException {
         Cursor mCursor = null;
         mCursor = db.query(true, SQLITE_TABLE, new String[] {KEY_ROWID, KEY_FRONT},
@@ -156,6 +180,36 @@ public class CardDBAdapter {
         }
 
         return cardList;
+    }
+
+    public Card fetchCardById(int cardID) throws SQLException {
+        Card newCard = null;
+        Cursor mCursor;
+        mCursor = db.query(true, SQLITE_TABLE, new String[] {KEY_ROWID, KEY_FRONT, KEY_BACK, KEY_DECK},
+                    KEY_ROWID + " == " + cardID, null,
+                    null, null, null, null);
+
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+
+            do {
+                String frontStr = mCursor.getString(1);
+                String backStr = mCursor.getString(2);
+                int deck = mCursor.getInt(3);
+                newCard = new Card(frontStr, backStr, deck);
+            } while (mCursor.moveToNext());
+        }
+
+        return newCard;
+    }
+
+    public void editCard(String frontStr, String backStr, int cardID) throws SQLException {
+        ContentValues newVals = new ContentValues();
+        newVals.put(KEY_FRONT, frontStr);
+        newVals.put(KEY_BACK, backStr);
+
+        String[] args = new String[] {Integer.toString(cardID)};
+        db.update(SQLITE_TABLE, newVals, KEY_ROWID + " = ?", args);
     }
 
     /*public void insertTestDecks() {

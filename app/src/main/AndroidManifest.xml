@@ -95,6 +95,16 @@
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
+            android:name=".EditCard"
+            android:label="@string/title_activity_edit_card"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".EditDeck"
+            android:label="@string/title_activity_edit_deck"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <activity
             android:name=".testocr"
             android:label="@string/title_activity_test_ocr"
             android:theme="@android:style/Theme.Black.NoTitleBar" >

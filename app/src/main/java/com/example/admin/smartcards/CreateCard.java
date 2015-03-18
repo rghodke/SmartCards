@@ -175,9 +175,9 @@ public class CreateCard extends Activity {
         // Get the dimensions of the bitmap
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
         bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
-        int photoW = bmOptions.outWidth;
-        int photoH = bmOptions.outHeight;
+        //BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+        //int photoW = bmOptions.outWidth;
+        //int photoH = bmOptions.outHeight;
 
         // Determine how much to scale down the image
         //int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
@@ -191,18 +191,22 @@ public class CreateCard extends Activity {
 
         matrix.postRotate(90);
 
-        Bitmap scaledBitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+        //Bitmap scaledBitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
 
-        Bitmap rotatedBitmap = Bitmap.createBitmap(scaledBitmap , 0, 0, scaledBitmap .getWidth(), scaledBitmap .getHeight(), matrix, true);
+        bitmapglobe = Bitmap.createBitmap((BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions)) , 0, 0, (BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions)) .getWidth(), (BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions)) .getHeight(), matrix, true);
 
-        Bitmap bitmap = rotatedBitmap;
+        //Bitmap bitmap = rotatedBitmap;
 
-        doOCR(bitmap);
+        doOCR(bitmapglobe);
 
+        //scaledBitmap.recycle();
+        //rotatedBitmap.recycle();
+        //bitmap.recycle();
+//        deleteFile(mCurrentPhotoPath);
         Log.e("setPic", "End of setPic");
 
     }
-
+    Bitmap bitmapglobe;
     Dialog match_text_dialog;
     ListView textlist;
     ArrayList<String> matches_text;
@@ -227,11 +231,11 @@ public class CreateCard extends Activity {
                 final String[] results =  result.split("[ \\n ]");
 
                 List<String> results2 = new LinkedList<String>();
-                              for(String s:results)
-                            {
-                               if(s != " ")
-                                 results2.add(s);
-                       }
+                for(String s:results)
+                {
+                    if(s != " ")
+                        results2.add(s);
+                }
                 final String[] results3 = new String[results2.size()];
                 results2.toArray(results3);
 
@@ -277,6 +281,8 @@ public class CreateCard extends Activity {
 
             };
         }).start();
+
+        //bitmap.recycle();
         Log.e("doOCR", "Start of doOCR");
 
     }
@@ -330,6 +336,7 @@ public class CreateCard extends Activity {
                                         int position, long id) {
                     Speech.setText(matches_text.get(position));
                     match_text_dialog.hide();
+
                 }
             });
             match_text_dialog.show();
@@ -403,7 +410,7 @@ public class CreateCard extends Activity {
                     startActivityForResult(intent, REQUEST_CODE);
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Plese Connect to Internet", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Please Connect to Internet", Toast.LENGTH_LONG).show();
                 }}
         });
 
@@ -428,22 +435,27 @@ public class CreateCard extends Activity {
 
     public void createBack (View view)
     {
+
         String title = ((EditText)findViewById(R.id.enterTitle)).getText().toString();
         String course = ((EditText)findViewById(R.id.enterCourse)).getText().toString();
         String cardFront = ((EditText)findViewById(R.id.enterCardFront)).getText().toString();
+
+
 
         Intent intent = new Intent(CreateCard.this, CreateCardBack.class);
         intent.putExtra("title", title);
         intent.putExtra("course", course);
         intent.putExtra("cardFront", cardFront);
         intent.putExtra("newDeck", newDeck);
+
+        bitmapglobe.recycle();
         startActivity(intent);
     }
 
     public void goDone (View view)
     {
-            Intent intent = new Intent(CreateCard.this, DeckList.class);
-            startActivity(intent);
+        Intent intent = new Intent(CreateCard.this, DeckList.class);
+        startActivity(intent);
     }
 
     public void ocrrecord (View view)

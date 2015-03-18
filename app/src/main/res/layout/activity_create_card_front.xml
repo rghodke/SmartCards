@@ -2,44 +2,32 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.admin.smartcards.CreateCard"
-    android:background="#ffb5bfc4">
+    android:background="@drawable/bg">
 
-    <LinearLayout android:layout_width="fill_parent"
-        android:layout_height="75dp"
-        android:orientation="horizontal"
-        android:id="@+id/linearLayout">
 
-        <ImageButton android:layout_width="fill_parent"
-            android:layout_height="match_parent"
+
+
+        <Button
+            android:background="@drawable/custom_btn_beige"
+            android:textColor="@android:color/white"
+            android:layout_width="250dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#ff888f93"
-            android:id="@+id/BackButton"
-            android:src="@drawable/back"
-            android:onClick="goBack"
-            android:scaleType="fitCenter"
-            android:paddingTop="22dp"
-            android:paddingBottom="22dp"
-            android:paddingRight="100dp" />
-
-        <ImageButton android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#ff888f93"
             android:id="@+id/DoneButton"
-            android:src="@drawable/done"
+            android:text="Done"
+            android:textSize="20dp"
             android:onClick="goDone"
-            android:scaleType="fitCenter"
-            android:paddingTop="22dp"
-            android:paddingBottom="22dp"
-            android:paddingLeft="100dp" />
+            android:scaleType="fitCenter" />
 
-    </LinearLayout>
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/viewTitle"
-        android:layout_below="@+id/linearLayout"
+        android:layout_below="@+id/DoneButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
@@ -50,7 +38,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:padding="0dp"
-        android:textColor="#ff58595b" />
+        android:textColor="#fff" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -65,7 +53,7 @@
         android:layout_below="@+id/viewTitle"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textColor="#8058595b" />
+        android:textColor="#fff" />
 
     <EditText
 
@@ -116,6 +104,7 @@
         android:layout_marginRight="20dp"
         android:paddingTop="50dp" />
 
+
     <ImageButton
         style="?android:attr/buttonStyleSmall"
         android:layout_width="50dp"
@@ -129,5 +118,6 @@
         android:layout_alignBottom="@+id/enterCardFront"
         android:layout_alignRight="@+id/enterCardFront"
         android:layout_alignEnd="@+id/enterCardFront" />
+
 
 </RelativeLayout>

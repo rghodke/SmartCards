@@ -12,6 +12,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.admin.models.Deck;
+
 public class DeckDBAdapter {
     public static final String KEY_ROWID = "_id";
     public static final String KEY_NAME = "name";
@@ -107,6 +109,35 @@ public class DeckDBAdapter {
 
     }
 
+    public boolean deleteDeck(int deckID)
+    {
+        int doneDelete = 0;
+        doneDelete = db.delete(SQLITE_TABLE, KEY_ROWID + " = ?", new String[] {Integer.toString(deckID)});
+        return doneDelete > 0;
+    }
+
+    public Deck grabDeck(int deckID)
+    {
+        Deck deck = null;
+        Cursor mCursor = null;
+        mCursor = db.query(SQLITE_TABLE, new String[] {KEY_NAME, KEY_COURSE},
+            KEY_ROWID + " == " + deckID, null,
+            null, null, null, null);
+
+        if(mCursor != null)
+        {
+            mCursor.moveToFirst();
+
+            do {
+                String deckName = mCursor.getString(0);
+                String deckCourse = mCursor.getString(1);
+                deck = new Deck(deckCourse, deckName);
+            } while (mCursor.moveToNext());
+        }
+
+        return deck;
+    }
+
     public Cursor fetchDecksByName(String inputText) throws SQLException {
         Log.w(TAG, inputText);
         Cursor mCursor = null;
@@ -156,6 +187,15 @@ public class DeckDBAdapter {
             mCursor.moveToFirst();
         }
         return mCursor;
+    }
+
+    public void editDeck(String deckName, String deckCourse, int deckID) throws SQLException {
+        ContentValues newVals = new ContentValues();
+        newVals.put(KEY_NAME, deckName);
+        newVals.put(KEY_COURSE, deckCourse);
+
+        String[] args = new String[] {Integer.toString(deckID)};
+        db.update(SQLITE_TABLE, newVals, KEY_ROWID + " = ?", args);
     }
 
     public void insertTestDecks() {

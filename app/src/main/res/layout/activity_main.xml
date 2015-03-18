@@ -4,7 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="#ffb5bfc4"
+    android:background="@drawable/bg"
     tools:context=".MainActivity">
 
     <ImageView
@@ -55,25 +55,34 @@
         android:layout_marginRight="25dp"
         android:id="@+id/linearLayout2"
         android:layout_marginTop="5dp">
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:text="Login" android:id="@+id/button2"
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:id="@+id/button2"
             android:onClick="login"
             android:layout_below="@+id/passwordlogin"
             android:layout_alignLeft="@+id/passwordlogin"
             android:layout_alignStart="@+id/passwordlogin"
             android:layout_alignParentTop="false"
             android:layout_weight="1"
-            android:background="#ff404040"
+            android:background="@drawable/custom_btn_beige"
             android:layout_marginRight="2.5dp"
             android:textColor="#fff"
             android:padding="10dp" />
 
-        <Button android:layout_width="0dp" android:layout_height="wrap_content" android:text="Sign Up" android:id="@+id/button"
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:id="@+id/button"
             android:onClick = "createAccount"
             android:layout_below="@+id/passwordlogin"
             android:layout_alignRight="@+id/passwordlogin"
             android:layout_alignEnd="@+id/passwordlogin"
             android:layout_weight="1"
-            android:background="#ff404040"
+            android:background="@drawable/custom_btn_beige"
             android:layout_marginLeft="2.5dp"
             android:textColor="#fff"
             android:padding="10dp" />

@@ -2,34 +2,27 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.admin.smartcards.CardFront"
-    android:background="#ffb5bfc4">
+    android:background="@drawable/bg">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:layout_alignParentBottom="false"
-        android:layout_alignParentEnd="false"
-        android:background="#ff888f93">
-        <ImageButton android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:id="@+id/BackButton"
-            android:src="@drawable/back"
-            android:scaleType="fitCenter"
-            android:paddingTop="22dp"
-            android:paddingBottom="22dp"
-            android:paddingRight="100dp" />
+        android:background="@android:color/transparent">
+
+
         <Button
             android:layout_width="fill_parent"
             android:layout_height="75dp"
             android:id="@+id/DoneButton"
             android:layout_centerHorizontal="true"
-            android:text="done"
+            android:text="Done"
             android:textSize="20sp"
-            android:background="@android:color/transparent"
-            android:textColor="#ff646464"
+            android:background="@drawable/custom_btn_beige"
+            android:textColor="#fff"
             android:layout_weight="1"
             android:onClick="GoBacktoDeckView"
+            android:layout_margin="25sp"
             android:paddingLeft="110dp" />
 
     </LinearLayout>

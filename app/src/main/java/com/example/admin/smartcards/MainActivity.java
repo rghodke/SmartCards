@@ -149,20 +149,28 @@ public class MainActivity extends Activity {
             public void done(List<ParseObject> arg0, ParseException arg1) {
                 EditText password   = (EditText)findViewById(R.id.passwordlogin);
                 String p = password.getText().toString();
-                ParseObject user_pass = arg0.get(0) ;
                 Context c = MainActivity.this;
+
+
+                ParseObject user_pass = arg0.get(0) ;
                 String password_user = user_pass.getString("passwords");
 
-                if(p.equals(password_user))
-                {
-                    Intent intent = new Intent(MainActivity.this, DeckList.class);
-                    startActivity(intent);
+                //Toast.makeText(MainActivity.this, user_pass.getString("usernames").isEmpty()+"--", Toast.LENGTH_LONG).show();
+                if(!(user_pass.getString("usernames").isEmpty())) {
+                    if (p.equals(password_user)) {
+                        Intent intent = new Intent(MainActivity.this, DeckList.class);
+                        startActivity(intent);
+                    } else
+                        Toast.makeText(c, "Improper Login", Toast.LENGTH_LONG).show();
+                }else{
+
+                    Toast.makeText(c, "Username does not exist.", Toast.LENGTH_LONG).show();
                 }
-                else
-                    Toast.makeText(c, "Improper Login" , Toast.LENGTH_LONG).show();
             }
+
         });
     }
+
 
     private void copyAssets() {
         AssetManager assetManager = getAssets();
@@ -214,9 +222,9 @@ public class MainActivity extends Activity {
     }
 
     public void createAccount(View view) {
-            copyAssets();
-            Intent intent = new Intent(MainActivity.this, CreateAccount.class);
-            startActivity(intent);
+        copyAssets();
+        Intent intent = new Intent(MainActivity.this, CreateAccount.class);
+        startActivity(intent);
 
     }
 

@@ -46,9 +46,9 @@ public class CreateCardBack extends Activity {
 
 
     private TessOCR mTessOCR;
-//    private TextView mResult;
+    //    private TextView mResult;
     private ProgressDialog mProgressDialog;
-//    private ImageView mImage;
+    //    private ImageView mImage;
     private String mCurrentPhotoPath;
     private static final int REQUEST_TAKE_PHOTO = 1;
     private static final int REQUEST_PICK_PHOTO = 2;
@@ -120,7 +120,7 @@ public class CreateCardBack extends Activity {
     }
 
     private void dispatchTakePictureIntent() {
-        Log.e("dispatchTakePictureIntent", "Start of dispatchTakePictureIntent");
+        //Log.e("dispatchTakePictureIntent", "Start of dispatchTakePictureIntent");
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -140,7 +140,7 @@ public class CreateCardBack extends Activity {
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
-        Log.e("dispatchTakePictureIntent", "End of dispatchTakePictureIntent");
+        //Log.e("dispatchTakePictureIntent", "End of dispatchTakePictureIntent");
 
     }
 
@@ -178,7 +178,7 @@ public class CreateCardBack extends Activity {
         // Get the dimensions of the bitmap
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
         bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+        //BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
 
         // Determine how much to scale down the image
         //int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
@@ -192,19 +192,20 @@ public class CreateCardBack extends Activity {
 
         matrix.postRotate(90);
 
-        Bitmap scaledBitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+        //Bitmap scaledBitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
 
-        Bitmap rotatedBitmap = Bitmap.createBitmap(scaledBitmap , 0, 0, scaledBitmap .getWidth(), scaledBitmap .getHeight(), matrix, true);
+        //Bitmap rotatedBitmap = Bitmap.createBitmap(scaledBitmap , 0, 0, scaledBitmap .getWidth(), scaledBitmap .getHeight(), matrix, true);
 
-        Bitmap bitmap = rotatedBitmap;
+        bitmapglobe = Bitmap.createBitmap((BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions)) , 0, 0, (BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions)) .getWidth(), (BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions)) .getHeight(), matrix, true);        //Bitmap bitmap = rotatedBitmap;
 
-        doOCR(bitmap);
+        doOCR(bitmapglobe);
 
         Log.e("setPic", "End of setPic");
 
     }
 
-EditText CardBack;
+    Bitmap bitmapglobe;
+    EditText CardBack;
 
     private void doOCR(final Bitmap bitmap) {
         Log.e("doOCR", "Start of doOCR");
@@ -443,6 +444,7 @@ EditText CardBack;
         intent.putExtra("title", title);
         intent.putExtra("course", course);
         intent.putExtra("newDeck", newDeck);
+        bitmapglobe.recycle();
         startActivity(intent);
     }
 

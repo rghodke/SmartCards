@@ -2,45 +2,54 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.admin.smartcards.DownloadDeck"
-    android:background="#ffb5bfc4">
+    android:background="@drawable/bg">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:id="@+id/linearLayout3">
-        <ImageButton
-            android:contentDescription="@string/settings_button"
-            android:layout_width="wrap_content"
+        android:id="@+id/linearLayout3"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/configbutton"
-            android:src="@drawable/settingstransparent"
-            android:background="@android:color/transparent"
+            android:id="@+id/searchBar"
             android:layout_weight="1"
+            android:typeface="normal"
             android:scaleType="fitCenter"
-            android:padding="22dp" />
+            android:padding="22dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Search"
+            android:inputType="textPersonName"
+
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/white"
+            />
 
         <ImageButton
-            android:contentDescription="@string/my_decks_button"
-            android:layout_width="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_width="250dp"
             android:layout_height="match_parent"
-            android:id="@+id/shareButton"
-            android:src="@drawable/mydecks"
-            android:background="@android:color/transparent"
+            android:id="@+id/searchButton"
+            android:src="@drawable/searchbutton"
+            android:background="@drawable/custom_btn_beige"
             android:layout_weight="1"
             android:scaleType="fitCenter"
+            android:onClick="search"
             android:padding="22dp" />
+
 
     </LinearLayout>
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:choiceMode = "singleChoice"
         android:listSelector="@android:color/white"
-        android:background="@android:color/white"
+        android:background="@android:color/transparent"
         android:id="@+id/downloadDeckList"
         android:textSize="12sp"
         android:layout_below="@+id/linearLayout3"
-        android:layout_alignLeft="@+id/linearLayout3"
-        android:layout_alignStart="@+id/linearLayout3"
-        android:scrollbars="none"/>
+        android:scrollbars="none"
+     />
 </RelativeLayout>

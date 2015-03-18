@@ -23,6 +23,11 @@ public class Deck implements Serializable {
         this.location = location;
     }
 
+    public Deck(String course, String deckName) {
+        this.course = course;
+        this.deckName = deckName;
+    }
+
     public String getCourse() {
         return this.course;
     }
@@ -73,6 +78,6 @@ public class Deck implements Serializable {
 
     public String toString()
     {
-        return this.deckName + " | " + this.course;
+        return this.course + " | " + this.deckName;
     }
 }

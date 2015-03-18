@@ -2,70 +2,70 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.admin.smartcards.DeckList"
-    android:background="#ffb5bfc4">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:id="@+id/linearLayout3">
-        <ImageButton
-            android:contentDescription="@string/settings_button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/configbutton"
-            android:src="@drawable/settingstransparent"
-            android:background="@android:color/transparent"
-            android:layout_weight="1"
-            android:scaleType="fitCenter"
-            android:padding="22dp" />
-
-        <ImageButton
-            android:contentDescription="@string/my_decks_button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/shareButton"
-            android:src="@drawable/mydecks"
-            android:background="@android:color/transparent"
-            android:layout_weight="1"
-            android:scaleType="fitCenter"
-            android:padding="22dp" />
-
-        <ImageButton
-            android:contentDescription="@string/cloud_button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/locButton"
-            android:src="@drawable/cloudtransparent"
-            android:background="@android:color/transparent"
-            android:layout_weight="1"
-            android:scaleType="fitCenter"
-            android:padding="22dp"
-            android:onClick="downloadDecks"/>
-    </LinearLayout>
-
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="75dp"
-        android:id="@+id/CreateDeckButton"
-        android:layout_centerHorizontal="true"
-        android:text="@string/create_deck"
-        android:onClick="CreateDeck"
-        android:layout_alignParentBottom="true"
-        android:textSize="20sp"
-        android:background="@android:color/transparent"
-        android:textColor="#ffffffff" />
-
+    android:background="@drawable/bg">
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:choiceMode = "singleChoice"
         android:listSelector="@android:color/white"
-        android:background="@android:color/white"
+        android:background="@android:color/transparent"
         android:id="@+id/deckList"
         android:textSize="12sp"
-        android:layout_below="@+id/linearLayout3"
-        android:layout_alignLeft="@+id/linearLayout3"
-        android:layout_alignStart="@+id/linearLayout3"
-        android:layout_above="@+id/CreateDeckButton"
-        android:scrollbars="none" />
+        android:scrollbars="none"
+        android:layout_above="@+id/linearLayout3"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:id="@+id/linearLayout3"
+        android:layout_marginTop="5dp">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/CreateDeckButton"
+            android:layout_centerHorizontal="true"
+            android:text="@string/create_deck"
+            android:onClick="CreateDeck"
+            android:layout_below="@+id/linearLayout3"
+            android:layout_alignLeft="@+id/downloadButton"
+            android:layout_alignParentTop="false"
+            android:layout_weight="1"
+            android:background="@drawable/custom_btn_beige"
+            android:layout_marginRight="2.5dp"
+            android:textColor="#fff"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10sp"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/cloud_button"
+            android:layout_marginRight="10sp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/downloadButton"
+            android:scaleType="fitCenter"
+            android:onClick="downloadDecks"
+            android:text="@string/downloadeck"
+            android:textSize="20sp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:layout_below="@+id/linearLayout3"
+            android:layout_alignRight="@+id/CreateDeckButton"
+            android:layout_weight="1"
+            android:background="@drawable/custom_btn_beige"
+            android:layout_marginLeft="2.5dp"
+            android:textColor="#fff"
+            android:padding="10dp"
+
+            />
+</LinearLayout>
+
+
+
 </RelativeLayout>

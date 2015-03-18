@@ -1,13 +1,12 @@
 package com.example.admin.smartcards;
 
-import java.util.ArrayList;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,7 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.admin.smartcards.R;
+import java.util.ArrayList;
 
 public class testclass extends Activity {
     private static final int REQUEST_CODE = 1234;
