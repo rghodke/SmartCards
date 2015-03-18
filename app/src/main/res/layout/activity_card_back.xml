@@ -13,7 +13,7 @@
 
         <Button
             android:layout_width="fill_parent"
-            android:layout_height="75dp"
+            android:layout_height="fill_parent"
             android:id="@+id/DoneButton"
             android:layout_centerHorizontal="true"
             android:text="Done"
@@ -22,8 +22,10 @@
             android:textColor="#fff"
             android:layout_weight="1"
             android:onClick="GoBacktoDeckView"
-            android:layout_margin="25sp"
-            android:paddingLeft="110dp" />
+            android:layout_marginTop="20sp"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
+             />
 
     </LinearLayout>
 

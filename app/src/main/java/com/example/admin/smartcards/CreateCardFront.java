@@ -203,7 +203,7 @@ public class CreateCardFront extends Activity {
 
     }
 
-    Bitmap bitmapglobe;
+    Bitmap bitmapglobe = null;
 
     private void doOCR(final Bitmap bitmap) {
         Log.e("doOCR", "Start of doOCR");
@@ -424,7 +424,9 @@ public class CreateCardFront extends Activity {
         intent.putExtra("course", course);
         intent.putExtra("cardFront", cardFront);
         intent.putExtra("newDeck", newDeck);
-        bitmapglobe.recycle();
+        if(bitmapglobe != (null)) {
+            bitmapglobe.recycle();
+        }
         startActivity(intent);
     }
 

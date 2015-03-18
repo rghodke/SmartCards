@@ -71,7 +71,7 @@
             android:layout_centerHorizontal="true"
             android:text="Download Deck"
             android:textSize="20sp"
-            android:background="@android:color/transparent"
+            android:background="@drawable/custom_btn_beige"
             android:textColor="#ffffffff"
             android:layout_weight="1"
             android:onClick="downloadDeck"/>

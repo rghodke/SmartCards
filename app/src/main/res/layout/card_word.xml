@@ -7,7 +7,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+        android:maxLength="13"
+        android:maxLines="1"
+        android:ellipsize="end"/>
 
     <TextView
         android:layout_width="wrap_content"

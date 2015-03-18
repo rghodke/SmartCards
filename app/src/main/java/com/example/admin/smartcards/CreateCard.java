@@ -206,7 +206,7 @@ public class CreateCard extends Activity {
         Log.e("setPic", "End of setPic");
 
     }
-    Bitmap bitmapglobe;
+    Bitmap bitmapglobe = null;
     Dialog match_text_dialog;
     ListView textlist;
     ArrayList<String> matches_text;
@@ -447,8 +447,9 @@ public class CreateCard extends Activity {
         intent.putExtra("course", course);
         intent.putExtra("cardFront", cardFront);
         intent.putExtra("newDeck", newDeck);
-
-        bitmapglobe.recycle();
+        if(bitmapglobe != (null)) {
+            bitmapglobe.recycle();
+        }
         startActivity(intent);
     }
 

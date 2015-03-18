@@ -67,7 +67,15 @@ public class CardFront extends Activity implements TextToSpeech.OnInitListener, 
         if (status == TextToSpeech.SUCCESS)
         {
             int result = tts.setOnUtteranceCompletedListener(this);
-            tts.speak(currCard.getFrontStr(), TextToSpeech.QUEUE_ADD, myHashAlarm);
+            if (mode.equals("front"))
+            {
+                tts.speak(currCard.getFrontStr(), TextToSpeech.QUEUE_ADD, myHashAlarm);
+            }
+            else
+            {
+                tts.speak(currCard.getBackStr(), TextToSpeech.QUEUE_ADD, myHashAlarm);
+            }
+            //tts.speak(currCard.getFrontStr(), TextToSpeech.QUEUE_ADD, myHashAlarm);
         }
         else
         {}
@@ -86,6 +94,7 @@ public class CardFront extends Activity implements TextToSpeech.OnInitListener, 
         intent.putExtra("deck", currDeck);
         intent.putExtra("index", cardIndex);
         intent.putExtra("mode", mode);
+        tts.stop();
         startActivity(intent);
     }
 
@@ -94,6 +103,7 @@ public class CardFront extends Activity implements TextToSpeech.OnInitListener, 
         Intent intent = new Intent(CardFront.this, ScoreScreen.class);
         
 				intent.putExtra("deck", currDeck);
+        tts.stop();
         startActivity(intent);
     }
 

@@ -204,7 +204,7 @@ public class CreateCardBack extends Activity {
 
     }
 
-    Bitmap bitmapglobe;
+    Bitmap bitmapglobe = null;
     EditText CardBack;
 
     private void doOCR(final Bitmap bitmap) {
@@ -444,7 +444,9 @@ public class CreateCardBack extends Activity {
         intent.putExtra("title", title);
         intent.putExtra("course", course);
         intent.putExtra("newDeck", newDeck);
-        bitmapglobe.recycle();
+        if(bitmapglobe != (null)) {
+            bitmapglobe.recycle();
+        }
         startActivity(intent);
     }
 

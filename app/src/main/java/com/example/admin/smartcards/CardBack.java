@@ -65,7 +65,16 @@ public class CardBack extends Activity implements TextToSpeech.OnInitListener, T
         if (status == TextToSpeech.SUCCESS)
         {
             int result = tts.setOnUtteranceCompletedListener(this);
-            tts.speak(currCard.getBackStr(), TextToSpeech.QUEUE_ADD, myHashAlarm);
+            if (mode.equals("front"))
+            {
+                tts.speak(currCard.getBackStr(), TextToSpeech.QUEUE_ADD, myHashAlarm);
+            }
+            else
+            {
+                tts.speak(currCard.getFrontStr(), TextToSpeech.QUEUE_ADD, myHashAlarm);
+            }
+
+
         }
         else
         {}
@@ -81,7 +90,7 @@ public class CardBack extends Activity implements TextToSpeech.OnInitListener, T
     public void GoBacktoDeckView(View view)
     {
         Intent intent = new Intent(CardBack.this, ScoreScreen.class);
-        
+        tts.stop();
 				intent.putExtra("deck", currDeck);
         startActivity(intent);
     }
@@ -99,6 +108,7 @@ public class CardBack extends Activity implements TextToSpeech.OnInitListener, T
 
             Intent intent = new Intent(CardBack.this, ScoreScreen.class);
             intent.putExtra("deck", currDeck);
+            tts.stop();
             startActivity(intent);
         }
         else
@@ -111,6 +121,7 @@ public class CardBack extends Activity implements TextToSpeech.OnInitListener, T
             intent.putExtra("deck", currDeck);
             intent.putExtra("mode", mode);
             intent.putExtra("index", cardIndex);
+            tts.stop();
             startActivity(intent);
         }
     }
@@ -124,6 +135,7 @@ public class CardBack extends Activity implements TextToSpeech.OnInitListener, T
         {
             Intent intent = new Intent(CardBack.this, ScoreScreen.class);
             intent.putExtra("deck", currDeck);
+            tts.stop();
             startActivity(intent);
         }
         else
@@ -132,6 +144,7 @@ public class CardBack extends Activity implements TextToSpeech.OnInitListener, T
             intent.putExtra("deck", currDeck);
             intent.putExtra("mode", mode);
             intent.putExtra("index", cardIndex);
+            tts.stop();
             startActivity(intent);
         }
     }

@@ -43,7 +43,7 @@ public class DownloadDeck extends Activity {
 
         final ArrayList<Deck> deckList = new ArrayList();
         final ListView deckListView = (ListView)findViewById(R.id.downloadDeckList);
-        final ArrayAdapter<Deck> listAdapter = new ArrayAdapter(DownloadDeck.this, R.layout.custom_textview, deckList);
+        final ArrayAdapter<Deck> listAdapter = new ArrayAdapter(DownloadDeck.this, R.layout.cutom_textview1, deckList);
 
         ParseQuery query = ParseQuery.getQuery("decks");
 
@@ -126,7 +126,7 @@ public class DownloadDeck extends Activity {
 
         final ArrayList<Deck> deckList1 = new ArrayList();
         final ListView deckListView1 = (ListView)findViewById(R.id.downloadDeckList);
-        final ArrayAdapter<Deck> listAdapter1 = new ArrayAdapter(DownloadDeck.this, R.layout.custom_textview, deckList1);
+        final ArrayAdapter<Deck> listAdapter1 = new ArrayAdapter(DownloadDeck.this, R.layout.cutom_textview1, deckList1);
 
         ParseObject gameList = new ParseObject("decks");
         ParseQuery<ParseObject> search_query = ParseQuery.getQuery("decks");
