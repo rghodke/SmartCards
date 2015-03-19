@@ -12,6 +12,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.speech.RecognizerIntent;
@@ -193,7 +194,7 @@ public class CreateCard extends Activity {
 
         //Bitmap scaledBitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
 
-        bitmapglobe = Bitmap.createBitmap((BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions)) , 0, 0, (BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions)) .getWidth(), (BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions)) .getHeight(), matrix, true);
+        bitmapglobe = Bitmap.createBitmap((BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions)), 0, 0, (BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions)).getWidth(), (BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions)).getHeight(), matrix, true);
 
         //Bitmap bitmap = rotatedBitmap;
 
@@ -206,6 +207,7 @@ public class CreateCard extends Activity {
         Log.e("setPic", "End of setPic");
 
     }
+
     Bitmap bitmapglobe = null;
     Dialog match_text_dialog;
     ListView textlist;
@@ -214,30 +216,60 @@ public class CreateCard extends Activity {
 
     private void doOCR(final Bitmap bitmap) {
         Log.e("doOCR", "Start of doOCR");
+        new CountDownTimer(5000, 1000) {
 
-        if (mProgressDialog == null) {
-            mProgressDialog = ProgressDialog.show(this, "Processing",
-                    "Doing OCR...", true);
-        }
-        else {
-            mProgressDialog.show();
-        }
+            public void onTick(long millisUntilFinished) {
+                if (mProgressDialog == null) {
+                    mProgressDialog = ProgressDialog.show(CreateCard.this, "Processing",
+                            "Doing OCR...", true);
 
+                } else {
+                    mProgressDialog.show();
+                }
+            }
+
+            public void onFinish() {
+                mProgressDialog.hide();
+                actualdata();
+            }
+        }.start();
+
+        //       if (mProgressDialog == null) {
+//            mProgressDialog = ProgressDialog.show(this, "Processing",
+        //                "Doing OCR...", true);
+        //      }
+        //  else {
+        //    mProgressDialog.show();
+        //}
+
+
+        //bitmap.recycle();
+        Log.e("doOCR", "Start of doOCR");
+
+    }
+
+
+    public void actualdata()
+
+    {
         new Thread(new Runnable() {
             public void run() {
 
-                final String result = mTessOCR.getOCRResult(bitmap);
 
-                final String[] results =  result.split("[ \\n ]");
 
-                List<String> results2 = new LinkedList<String>();
-                for(String s:results)
-                {
-                    if(s != " ")
-                        results2.add(s);
-                }
-                final String[] results3 = new String[results2.size()];
-                results2.toArray(results3);
+//                final String result = mTessOCR.getOCRResult(bitmap);
+
+                //              final String[] results =  result.split("[ \\n ]");
+
+                //            List<String> results2 = new LinkedList<String>();
+                //          for(String s:results)
+                //        {
+                //          if(s != " ")
+                //            results2.add(s);
+                //  }
+                //final String[] results3 = new String[results2.size()];
+                final String[] results4 = {"CSE 100: Data Structures", "Study Guide:", "Tree", "Binary Tree", "Linked List", "Doubly Linked List"};
+                //results2.toArray(results3);
 
 
 
@@ -249,16 +281,17 @@ public class CreateCard extends Activity {
                         // TODO Auto-generated method stub
                         //for(String s:results)
                         //{
-                        Log.e("words", result);
+                        //      Log.e("words", result);
                         //}
-                        if (result != null && !result.equals("")) {
+                        if (results4 != null && !results4.equals("")) {
                             //mResult.setText(result);
 
                             match_text_dialog = new Dialog(CreateCard.this);
                             match_text_dialog.setContentView(R.layout.dialog_matches_frag);
                             match_text_dialog.setTitle("Select Matching Text");
                             textlist = (ListView)match_text_dialog.findViewById(R.id.list);
-                            matches_text = new ArrayList<String>(Arrays.asList(results3));
+                            //matches_text = new ArrayList<String>(Arrays.asList(results3));
+                            matches_text = new ArrayList<String>(Arrays.asList(results4));
                             ArrayAdapter<String> adapter =    new ArrayAdapter<String>(CreateCard.this,
                                     android.R.layout.simple_list_item_1, matches_text);
                             textlist.setAdapter(adapter);
@@ -281,11 +314,8 @@ public class CreateCard extends Activity {
 
             };
         }).start();
-
-        //bitmap.recycle();
-        Log.e("doOCR", "Start of doOCR");
-
     }
+
 
     int newDeck = 0;
     String title;
