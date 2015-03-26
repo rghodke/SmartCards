@@ -12,7 +12,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.speech.RecognizerIntent;
@@ -53,6 +52,7 @@ public class CreateCardBack extends Activity {
     private String mCurrentPhotoPath;
     private static final int REQUEST_TAKE_PHOTO = 1;
     private static final int REQUEST_PICK_PHOTO = 2;
+
 
 
     private void uriOCR(Uri uri) {
@@ -196,7 +196,7 @@ public class CreateCardBack extends Activity {
 
         //Bitmap rotatedBitmap = Bitmap.createBitmap(scaledBitmap , 0, 0, scaledBitmap .getWidth(), scaledBitmap .getHeight(), matrix, true);
 
-        bitmapglobe = Bitmap.createBitmap((BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions)), 0, 0, (BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions)).getWidth(), (BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions)).getHeight(), matrix, true);        //Bitmap bitmap = rotatedBitmap;
+        bitmapglobe = Bitmap.createBitmap((BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions)) , 0, 0, (BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions)) .getWidth(), (BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions)) .getHeight(), matrix, true);        //Bitmap bitmap = rotatedBitmap;
 
         doOCR(bitmapglobe);
 
@@ -209,43 +209,19 @@ public class CreateCardBack extends Activity {
 
     private void doOCR(final Bitmap bitmap) {
         Log.e("doOCR", "Start of doOCR");
-        new CountDownTimer(5000, 1000) {
 
-            public void onTick(long millisUntilFinished) {
-                if (mProgressDialog == null) {
-                    mProgressDialog = ProgressDialog.show(CreateCardBack.this, "Processing",
-                            "Doing OCR...", true);
+        if (mProgressDialog == null) {
+            mProgressDialog = ProgressDialog.show(this, "Processing",
+                    "Doing OCR...", true);
+        }
+        else {
+            mProgressDialog.show();
+        }
 
-                } else {
-                    mProgressDialog.show();
-                }
-            }
-
-            public void onFinish() {
-                mProgressDialog.hide();
-                actualdata();
-            }
-        }.start();
-
-        //       if (mProgressDialog == null) {
-//            mProgressDialog = ProgressDialog.show(this, "Processing",
-        //                "Doing OCR...", true);
-        //      }
-        //  else {
-        //    mProgressDialog.show();
-        //}
-
-
-        //bitmap.recycle();
-        Log.e("doOCR", "Start of doOCR");
-
-    }
-
-    public void actualdata() {
         new Thread(new Runnable() {
             public void run() {
 
-                // final String result = mTessOCR.getOCRResult(bitmap);
+                final String result = mTessOCR.getOCRResult(bitmap);
 
                 //final String[] results =  result.split("[ \\n ]");
 
@@ -255,10 +231,10 @@ public class CreateCardBack extends Activity {
                 //               if(s != " ")
                 //                 results2.add(s);
                 //       }
-//                final String results3 = result;
-
-                final String[] results4 = {"A tree data structure is a powerful tool for organizing data objects based on keys. It is equally useful for organizing multiple data objects in terms of hierarchical relationships", "a binary tree is a tree data structure in which each node has at most two children, which are referred to as the left child and the right child.", "a linked list is a data structure consisting of a group of nodes which together represent a sequence. Under the simplest form, each node is composed of a data and a reference (in other words, a link) to the next node in the sequence; more complex variants add additional links.", "a doubly-linked list is a linked data structure that consists of a set of sequentially linked records called nodes. Each node contains two fields, called links, that are references to the previous and to the next node in the sequence of nodes."};
+                final String results3 = result;
                 //     results2.toArray(results3);
+
+
 
 
                 runOnUiThread(new Runnable() {
@@ -268,18 +244,17 @@ public class CreateCardBack extends Activity {
                         // TODO Auto-generated method stub
                         //for(String s:results)
                         //{
-                        //        Log.e("words", result);
+                        Log.e("words", result);
                         //}
-                        if (results4 != null && !results4.equals("")) {
+                        if (result != null && !result.equals("")) {
 
 
                             match_text_dialog = new Dialog(CreateCardBack.this);
                             match_text_dialog.setContentView(R.layout.dialog_matches_frag);
                             match_text_dialog.setTitle("Select Matching Text");
-                            textlist = (ListView) match_text_dialog.findViewById(R.id.list);
-                            matches_text = new ArrayList<String>(Arrays.asList(results4));
-//                            matches_text = new ArrayList<String>(Arrays.asList(results3));
-                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(CreateCardBack.this,
+                            textlist = (ListView)match_text_dialog.findViewById(R.id.list);
+                            matches_text = new ArrayList<String>(Arrays.asList(results3));
+                            ArrayAdapter<String> adapter =    new ArrayAdapter<String>(CreateCardBack.this,
                                     android.R.layout.simple_list_item_1, matches_text);
                             textlist.setAdapter(adapter);
                             textlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -299,15 +274,11 @@ public class CreateCardBack extends Activity {
 
                 });
 
-            }
-
-            ;
+            };
         }).start();
         Log.e("doOCR", "Start of doOCR");
 
     }
-
-
 
 
 
